@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Czasowniki nieregularne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=Gentium+Book+Plus&display=swap">
+<style>
+/* Layout: verbs grouped by pattern; each row shows the three forms (word over IPA) | Polish meaning, with an example sentence under them.
+   Practice modes cover forms 2+3, all English, or the Polish; a flashcard view drills one verb at a time. */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --ink: #18241f;
+  --muted: #5b6a63;
+  --line: #dbe2dd;
+  --green: #1f5c45;
+  --green-soft: #e3efe9;
+  --amber: #b5651d;
+  --amber-soft: #f8ecdf;
+  --cover: #e6ebe7;
+  --cover-ink: #6b7a73;
+  --f-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-ipa: "Gentium Book Plus", "Charis SIL", "Doulos SIL", "Lucida Sans Unicode", "Arial Unicode MS", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111814; --surface: #18221d; --ink: #e8efea; --muted: #9db0a6; --line: #2a3832;
+    --green: #7fcfa9; --green-soft: #1e3a2e; --amber: #f0a868; --amber-soft: #3a2a1b;
+    --cover: #24312b; --cover-ink: #93a69c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111814; --surface: #18221d; --ink: #e8efea; --muted: #9db0a6; --line: #2a3832;
+  --green: #7fcfa9; --green-soft: #1e3a2e; --amber: #f0a868; --amber-soft: #3a2a1b;
+  --cover: #24312b; --cover-ink: #93a69c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+.wrap { max-width: 920px; margin: 0 auto; }
+a.home { display: inline-block; margin-bottom: 14px; color: var(--green); font-weight: 600; font-size: 14px; text-decoration: none; }
+header.intro { padding-block: 32px 8px; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(28px, 6vw, 44px); line-height: 1.05; margin: 0 0 10px; text-wrap: balance; letter-spacing: -0.01em; }
+.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+
+.explain { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-block: 20px 8px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.box h3 { font-family: var(--f-display); font-size: 16px; margin: 0 0 8px; }
+.box ol, .box ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 15px; }
+.box .en-ex { font-weight: 600; }
+.box mark, .ex-en mark, .card mark { background: var(--amber-soft); color: var(--amber); border-radius: 4px; padding: 0 2px; font-weight: 700; }
+.box.warn { background: var(--amber-soft); border-color: transparent; }
+.box.warn h3 { color: var(--amber); }
+.box .bad { text-decoration: line-through; color: var(--muted); }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 8px; padding-block: 10px; align-items: center; margin-top: 12px;
+}
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: transparent; color: var(--muted); font: 600 13px/1 var(--f-body); padding: 9px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--green); color: var(--bg); }
+.seg.view button[aria-pressed="true"] { background: var(--ink); }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 13px/1 var(--f-body); padding: 9px 12px; border-radius: 999px; cursor: pointer; }
+.btn:hover, .seg button:hover { filter: brightness(0.97); }
+button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.bar .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; margin-right: 2px; }
+.bar .group { display: inline-flex; align-items: center; gap: 6px; }
+.progress { margin-left: auto; font-size: 13px; color: var(--muted); font-weight: 600; }
+.view-cards .list-only, .view-list .cards-only { display: none !important; }
+
+nav.steps { display: flex; gap: 6px; overflow-x: auto; padding-block: 12px 4px; scrollbar-width: thin; }
+nav.steps a { flex: none; text-decoration: none; color: var(--green); font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: var(--green-soft); }
+
+section.stage { margin-top: 28px; }
+section.stage[hidden] { display: none; }
+.stage-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+.stage-head .n { font-family: var(--f-display); font-weight: 800; font-size: 15px; color: var(--amber); font-variant-numeric: tabular-nums; }
+.stage-head h2 { font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 4vw, 26px); margin: 0; line-height: 1.15; }
+.stage-head .pattern { color: var(--muted); font-size: 14px; margin-left: auto; text-align: right; font-weight: 600; letter-spacing: .02em; }
+.tip { margin: 10px 0 0; color: var(--muted); font-size: 15px; max-width: 70ch; }
+
+.colhead { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; padding-block: 12px 2px; }
+.colhead .fh { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.colhead small { display: block; text-transform: none; letter-spacing: 0; font-weight: 500; font-size: 12px; }
+
+.verb { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 6px 16px; padding-block: 14px; border-bottom: 1px solid var(--line); align-items: start; }
+.verb[hidden] { display: none !important; }
+.forms { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.f { min-width: 0; display: flex; flex-direction: column; }
+.f b { font-weight: 600; font-size: 20px; line-height: 1.25; overflow-wrap: anywhere; }
+.f i { font-style: normal; font-family: var(--f-ipa); font-size: 15px; color: var(--muted); line-height: 1.3; overflow-wrap: anywhere; }
+.f i::before { content: "/"; opacity: .45; } .f i::after { content: "/"; opacity: .45; }
+.star { color: var(--amber); font-size: 13px; margin-left: 4px; vertical-align: 2px; }
+
+.cover { display: none; position: absolute; top: 0; bottom: 0; right: 0; left: calc((100% - 16px) / 3 + 8px); border: 1px dashed var(--line); background: var(--cover); color: var(--cover-ink); border-radius: 10px; padding: 8px 12px; font: 600 13px/1.3 var(--f-body); cursor: pointer; text-align: left; }
+.m-en .cover { left: 0; }
+.m-forms .verb:not(.open) .f2, .m-forms .verb:not(.open) .f3, .m-en .verb:not(.open) .f { visibility: hidden; }
+.m-forms .verb:not(.open) .cover, .m-en .verb:not(.open) .cover { display: block; }
+.m-forms .verb:not(.open) .ex-en, .m-en .verb:not(.open) .ex-en { display: none; }
+
+.meta { min-width: 0; }
+.reveal { width: 100%; text-align: left; border: 1px dashed transparent; border-radius: 10px; padding: 8px 12px; background: transparent; color: var(--ink); font: 500 17px/1.35 var(--f-body); min-height: 44px; cursor: default; }
+.reveal .hint { display: none; font-size: 13px; font-weight: 600; color: var(--cover-ink); }
+.reveal .note { display: block; font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 4px; }
+.m-pl .reveal { cursor: pointer; }
+.m-pl .verb:not(.plopen) .reveal { background: var(--cover); border-color: var(--line); }
+.m-pl .verb:not(.plopen) .reveal .txt { display: none; }
+.m-pl .verb:not(.plopen) .reveal .hint { display: block; }
+.m-pl .verb:not(.plopen) .ex-pl { visibility: hidden; }
+
+.ex { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; font-size: 15px; }
+.ex-en { font-weight: 500; }
+.ex-pl { color: var(--muted); }
+.ex-tools { display: inline-flex; gap: 14px; margin-left: auto; }
+.say, .know { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; color: var(--green); font: 600 13px/1 var(--f-body); cursor: pointer; padding: 4px 0; white-space: nowrap; }
+.say svg { width: 16px; height: 16px; }
+.know { color: var(--muted); }
+.know[aria-pressed="true"] { color: var(--green); }
+.know::before { content: ""; width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid currentColor; display: inline-block; }
+.know[aria-pressed="true"]::before { background: currentColor; box-shadow: inset 0 0 0 2px var(--bg); }
+.no-tts .say { display: none; }
+
+/* Flashcards */
+.cards { padding-block: 20px; }
+.card { max-width: 560px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px 20px; text-align: center; }
+.card .k { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; }
+.card .meaning { font-family: var(--f-display); font-weight: 800; font-size: clamp(26px, 6vw, 36px); line-height: 1.1; margin: 8px 0 18px; }
+.card .forms { text-align: left; max-width: 420px; margin: 0 auto; }
+.card .f b { font-size: 24px; }
+.card .slot { border: 1px dashed var(--line); background: var(--cover); border-radius: 10px; min-height: 56px; }
+.card .ask { color: var(--muted); margin: 16px 0 0; }
+.card .ex { justify-content: center; margin-top: 18px; text-align: center; }
+.card .ex-tools { margin-left: 0; }
+.card .note { color: var(--muted); font-size: 14px; margin-top: 8px; }
+.card-actions { display: flex; gap: 10px; justify-content: center; margin-top: 22px; flex-wrap: wrap; }
+.big { font: 700 16px/1 var(--f-body); padding: 14px 22px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; min-width: 140px; }
+.big.primary { background: var(--green); border-color: var(--green); color: var(--bg); }
+.big.again { background: var(--amber-soft); border-color: transparent; color: var(--amber); }
+.meter { max-width: 560px; margin: 0 auto 14px; height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.meter span { display: block; height: 100%; background: var(--green); width: 0; transition: width .3s; }
+.cards .count { max-width: 560px; margin: 0 auto 8px; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); font-weight: 600; }
+.keys { text-align: center; color: var(--muted); font-size: 12px; margin-top: 12px; }
+@media (hover: none) { .keys { display: none; } }
+
+footer { margin-top: 36px; color: var(--muted); font-size: 14px; max-width: 62ch; }
+footer h3 { font-family: var(--f-display); color: var(--ink); font-size: 17px; margin: 0 0 6px; }
+footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+@media (max-width: 640px) {
+  .verb { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .colhead { grid-template-columns: minmax(0, 1fr); }
+  .colhead > span:last-child { display: none; }
+  .f b { font-size: 18px; }
+  .f i { font-size: 14px; }
+  .reveal { font-size: 15px; padding: 6px 10px; min-height: 40px; }
+  .stage-head { flex-wrap: wrap; }
+  .stage-head .pattern { margin-left: 0; width: 100%; text-align: left; }
+  .ex-tools { margin-left: 0; }
+  .progress { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .verb.open .f, .verb.plopen .reveal .txt, .card .revealed { animation: fade .18s ease-out; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+}
+</style>
+
+<body class="m-forms view-list">
+<div class="wrap">
+  <header class="intro">
+    <a class="home" href="../">← Wszystkie lekcje</a>
+    <h1>Czasowniki nieregularne</h1>
+    <p>Czasowniki nieregularne mają trzy formy, których trzeba się nauczyć. Są tu pogrupowane według wzoru, więc uczysz się kilku wzorów zamiast 60 osobnych słów. Zacznij od tych z gwiazdką <span class="star" style="margin:0">★</span>, bo słychać je najczęściej.</p>
+  </header>
+
+  <div class="explain">
+    <div class="box">
+      <h3>Kiedy której formy używasz</h3>
+      <ol>
+        <li><b>Forma 1</b> to teraźniejszość: <span class="en-ex" lang="en-GB">I <mark>go</mark> to work every day.</span></li>
+        <li><b>Forma 2</b> to przeszłość: <span class="en-ex" lang="en-GB">Yesterday I <mark>went</mark> to work.</span></li>
+        <li><b>Forma 3</b> idzie po <i>have / has</i>: <span class="en-ex" lang="en-GB">I have never <mark>been</mark> to London.</span></li>
+      </ol>
+    </div>
+    <div class="box warn">
+      <h3>Pułapka: did</h3>
+      <ul>
+        <li>W pytaniu i przeczeniu w przeszłości jest <b>did + forma 1</b>.</li>
+        <li><span class="en-ex" lang="en-GB">Did you <mark>go</mark>?</span> <span class="bad" lang="en-GB">Did you went?</span></li>
+        <li><span class="en-ex" lang="en-GB">I didn't <mark>eat</mark>.</span> <span class="bad" lang="en-GB">I didn't ate.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bar" role="toolbar" aria-label="Ćwiczenie">
+    <div class="seg view" id="view">
+      <button type="button" data-view="list" aria-pressed="true">Lista</button>
+      <button type="button" data-view="cards" aria-pressed="false">Fiszki</button>
+    </div>
+    <div class="group list-only">
+      <span class="label">Zakryj</span>
+      <div class="seg" id="mode">
+        <button type="button" data-mode="forms" aria-pressed="true">Formy 2 i 3</button>
+        <button type="button" data-mode="en" aria-pressed="false">Angielski</button>
+        <button type="button" data-mode="pl" aria-pressed="false">Polski</button>
+        <button type="button" data-mode="none" aria-pressed="false">Nic</button>
+      </div>
+    </div>
+    <div class="seg" id="filter">
+      <button type="button" data-filter="star" aria-pressed="false">★ Najważniejsze</button>
+      <button type="button" data-filter="all" aria-pressed="true">Wszystkie</button>
+      <button type="button" data-filter="todo" aria-pressed="false">Do nauki</button>
+    </div>
+    <button type="button" class="btn list-only" id="reset">Zakryj od nowa</button>
+    <span class="progress" id="progress"></span>
+  </div>
+
+  <div class="list-only">
+    <nav class="steps" id="steps" aria-label="Grupy"></nav>
+    <main id="list"></main>
+  </div>
+
+  <div class="cards cards-only" id="cards" aria-live="polite"></div>
+
+  <footer>
+    <h3>Jak ćwiczyć</h3>
+    <ul>
+      <li>Mów trzy formy na głos, rytmicznie, jak wyliczankę: <i lang="en-GB">go, went, gone</i>. Rytm zostaje w głowie lepiej niż tabelka.</li>
+      <li>W trybie „Zakryj: Formy 2 i 3” powiedz obie formy, zanim stukniesz w szary prostokąt.</li>
+      <li>Potem „Zakryj: Angielski”: widzisz polskie znaczenie i mówisz wszystkie trzy formy.</li>
+      <li>Fiszki pokazują jeden czasownik naraz. Zaznacz „Umiem”, a czasownik zniknie z „Do nauki”. Postęp zapisuje się na tym telefonie.</li>
+      <li>Wieczorem opowiedz w trzech zdaniach, co dziś robiłaś: <i lang="en-GB">I woke up at seven. I went to work. I ate pasta.</i></li>
+      <li>Pięć minut dziennie da więcej niż godzina raz w tygodniu.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Each verb: base, past, participle, IPA of each (same order), Polish, example in past simple (*marks* the verb), its Polish, optional note.
+const GROUPS = [
+  { pl: "Trzy najważniejsze", pattern: "każda forma inna", tip: "Najczęstsze czasowniki w angielskim. Nie pasują do żadnego wzoru, więc po prostu warto znać je na pamięć.", items: [
+    ["be", "was / were", "been", "biː", "wɒz / wɜː", "biːn", "być", "I *was* very tired yesterday.", "Wczoraj byłam bardzo zmęczona.", "was dla I, he, she, it; were dla you, we, they."],
+    ["go", "went", "gone", "ɡəʊ", "went", "ɡɒn", "iść, jechać", "We *went* to a restaurant on Friday.", "W piątek poszliśmy do restauracji."],
+    ["do", "did", "done", "duː", "dɪd", "dʌn", "robić", "I *did* my homework.", "Zrobiłam zadanie domowe."],
+  ]},
+  { pl: "Trzy razy to samo", pattern: "A – A – A", tip: "Nic się nie zmienia, więc to łatwe punkty. Że chodzi o przeszłość, poznasz po reszcie zdania, np. yesterday.", items: [
+    ["put", "put", "put", "pʊt", "pʊt", "pʊt", "kłaść, położyć", "I *put* my bag on the chair.", "Położyłam torebkę na krześle."],
+    ["cut", "cut", "cut", "kʌt", "kʌt", "kʌt", "ciąć, kroić", "He *cut* the cake.", "Pokroił tort."],
+    ["cost", "cost", "cost", "kɒst", "kɒst", "kɒst", "kosztować", "The tickets *cost* twenty pounds.", "Bilety kosztowały dwadzieścia funtów."],
+    ["let", "let", "let", "let", "let", "let", "pozwolić", "My boss *let* me go home early.", "Szef pozwolił mi wcześniej wyjść."],
+    ["hit", "hit", "hit", "hɪt", "hɪt", "hɪt", "uderzyć", "I *hit* my head on the door.", "Uderzyłam się głową o drzwi."],
+    ["hurt", "hurt", "hurt", "hɜːt", "hɜːt", "hɜːt", "boleć, zranić", "My back *hurt* all day.", "Cały dzień bolały mnie plecy."],
+    ["shut", "shut", "shut", "ʃʌt", "ʃʌt", "ʃʌt", "zamknąć", "I *shut* the window.", "Zamknęłam okno."],
+    ["read", "read", "read", "riːd", "red", "red", "czytać", "I *read* a good book last week.", "W zeszłym tygodniu przeczytałam dobrą książkę.", "Pisze się tak samo, ale formy 2 i 3 czyta się /red/, jak kolor red."],
+  ]},
+  { pl: "Długie „ii” robi się krótkim „e”", pattern: "A – B – B", tip: "W formie 1 jest długie „ii”, a w formach 2 i 3 krótkie „e”: meet, met, met.", items: [
+    ["meet", "met", "met", "miːt", "met", "met", "spotkać", "I *met* my friend for coffee.", "Spotkałam się z koleżanką na kawę."],
+    ["feel", "felt", "felt", "fiːl", "felt", "felt", "czuć (się)", "I *felt* much better.", "Czułam się dużo lepiej."],
+    ["keep", "kept", "kept", "kiːp", "kept", "kept", "trzymać, zatrzymać", "I *kept* the receipt.", "Zatrzymałam paragon."],
+    ["sleep", "slept", "slept", "sliːp", "slept", "slept", "spać", "I *slept* very well.", "Bardzo dobrze spałam."],
+    ["leave", "left", "left", "liːv", "left", "left", "wyjść, zostawić", "We *left* at ten.", "Wyszliśmy o dziesiątej."],
+    ["mean", "meant", "meant", "miːn", "ment", "ment", "znaczyć, mieć na myśli", "Sorry, I *meant* Tuesday.", "Przepraszam, miałam na myśli wtorek."],
+  ]},
+  { pl: "Wszystko brzmi „ort”", pattern: "-ought / -aught", tip: "Formy 2 i 3 kończą się na -ought albo -aught i zawsze brzmią tak samo: /ɔːt/. Literę g i h się pomija.", items: [
+    ["buy", "bought", "bought", "baɪ", "bɔːt", "bɔːt", "kupić", "I *bought* a new dress.", "Kupiłam nową sukienkę."],
+    ["bring", "brought", "brought", "brɪŋ", "brɔːt", "brɔːt", "przynieść", "The waiter *brought* the menu.", "Kelner przyniósł kartę."],
+    ["think", "thought", "thought", "θɪŋk", "θɔːt", "θɔːt", "myśleć", "I *thought* it was free.", "Myślałam, że to za darmo."],
+    ["teach", "taught", "taught", "tiːtʃ", "tɔːt", "tɔːt", "uczyć (kogoś)", "My mum *taught* me to cook.", "Mama nauczyła mnie gotować."],
+    ["catch", "caught", "caught", "kætʃ", "kɔːt", "kɔːt", "złapać", "I *caught* the last bus.", "Złapałam ostatni autobus."],
+  ]},
+  { pl: "Forma 2 i 3 takie same", pattern: "A – B – B", tip: "Najliczniejsza grupa. Formy 2 i 3 są identyczne, więc z każdego czasownika uczysz się tylko dwóch słów.", items: [
+    ["have", "had", "had", "hæv", "hæd", "hæd", "mieć", "We *had* dinner at seven.", "Zjedliśmy kolację o siódmej.", "have dinner, have lunch = zjeść obiad, lunch."],
+    ["make", "made", "made", "meɪk", "meɪd", "meɪd", "robić, zrobić", "I *made* a mistake.", "Popełniłam błąd."],
+    ["say", "said", "said", "seɪ", "sed", "sed", "powiedzieć", "She *said* hello.", "Powiedziała cześć.", "said czyta się /sed/, nie „sejd”."],
+    ["pay", "paid", "paid", "peɪ", "peɪd", "peɪd", "płacić", "I *paid* by card.", "Zapłaciłam kartą."],
+    ["tell", "told", "told", "tel", "təʊld", "təʊld", "powiedzieć (komuś), opowiedzieć", "He *told* me a funny story.", "Opowiedział mi zabawną historię."],
+    ["sell", "sold", "sold", "sel", "səʊld", "səʊld", "sprzedać", "They *sold* their old car.", "Sprzedali swój stary samochód."],
+    ["find", "found", "found", "faɪnd", "faʊnd", "faʊnd", "znaleźć", "I *found* my keys.", "Znalazłam klucze."],
+    ["get", "got", "got", "ɡet", "ɡɒt", "ɡɒt", "dostać, dotrzeć", "I *got* a new phone.", "Dostałam nowy telefon.", "Amerykanie w formie 3 mówią gotten."],
+    ["hear", "heard", "heard", "hɪə", "hɜːd", "hɜːd", "słyszeć", "I *heard* a strange noise.", "Usłyszałam dziwny dźwięk.", "heard brzmi inaczej niż hear: /hɜːd/."],
+    ["send", "sent", "sent", "send", "sent", "sent", "wysłać", "I *sent* you a message.", "Wysłałam ci wiadomość."],
+    ["spend", "spent", "spent", "spend", "spent", "spent", "wydać, spędzić", "We *spent* the weekend in London.", "Spędziliśmy weekend w Londynie."],
+    ["lose", "lost", "lost", "luːz", "lɒst", "lɒst", "zgubić, przegrać", "I *lost* my umbrella.", "Zgubiłam parasol."],
+    ["learn", "learnt", "learnt", "lɜːn", "lɜːnt", "lɜːnt", "uczyć się", "I *learnt* ten new words.", "Nauczyłam się dziesięciu nowych słów.", "Można też powiedzieć learned."],
+    ["sit", "sat", "sat", "sɪt", "sæt", "sæt", "siedzieć, usiąść", "We *sat* by the window.", "Usiedliśmy przy oknie."],
+    ["stand", "stood", "stood", "stænd", "stʊd", "stʊd", "stać", "I *stood* in the queue for an hour.", "Stałam w kolejce godzinę."],
+    ["understand", "understood", "understood", "ˌʌndəˈstænd", "ˌʌndəˈstʊd", "ˌʌndəˈstʊd", "rozumieć", "I *understood* everything!", "Wszystko zrozumiałam!", "Działa jak stand, stood, stood."],
+    ["win", "won", "won", "wɪn", "wʌn", "wʌn", "wygrać", "Our team *won* the match.", "Nasza drużyna wygrała mecz.", "won brzmi tak samo jak one."],
+  ]},
+  { pl: "Forma 3 wraca do formy 1", pattern: "A – B – A", tip: "Zmienia się tylko forma 2. Forma 3 jest taka sama jak forma 1.", items: [
+    ["come", "came", "come", "kʌm", "keɪm", "kʌm", "przyjść, przyjechać", "My sister *came* to visit.", "Siostra przyjechała w odwiedziny."],
+    ["become", "became", "become", "bɪˈkʌm", "bɪˈkeɪm", "bɪˈkʌm", "stać się, zostać", "She *became* a doctor.", "Została lekarką."],
+    ["run", "ran", "run", "rʌn", "ræn", "rʌn", "biec", "I *ran* to the station.", "Pobiegłam na stację."],
+  ]},
+  { pl: "i, potem a, potem u", pattern: "i – a – u", tip: "Zmienia się tylko samogłoska, zawsze w tej samej kolejności. Brzmi jak piosenka: drink, drank, drunk.", items: [
+    ["drink", "drank", "drunk", "drɪŋk", "dræŋk", "drʌŋk", "pić", "We *drank* a bottle of wine.", "Wypiliśmy butelkę wina."],
+    ["begin", "began", "begun", "bɪˈɡɪn", "bɪˈɡæn", "bɪˈɡʌn", "zaczynać", "The film *began* at eight.", "Film zaczął się o ósmej."],
+    ["swim", "swam", "swum", "swɪm", "swæm", "swʌm", "pływać", "We *swam* in the sea.", "Pływaliśmy w morzu."],
+    ["sing", "sang", "sung", "sɪŋ", "sæŋ", "sʌŋ", "śpiewać", "We *sang* karaoke all night.", "Całą noc śpiewaliśmy karaoke."],
+    ["ring", "rang", "rung", "rɪŋ", "ræŋ", "rʌŋ", "dzwonić", "My phone *rang* during the meeting.", "Telefon zadzwonił w trakcie spotkania."],
+  ]},
+  { pl: "Forma 3 kończy się na -n", pattern: "A – B – C(n)", tip: "Wszystkie trzy formy są różne, ale forma 3 prawie zawsze kończy się na -n albo -en. To pomaga ją zgadnąć.", items: [
+    ["eat", "ate", "eaten", "iːt", "et", "ˈiːtn", "jeść", "We *ate* pizza for dinner.", "Na kolację zjedliśmy pizzę.", "Brytyjczycy mówią ate jako /et/ albo /eɪt/. Oba są poprawne."],
+    ["take", "took", "taken", "teɪk", "tʊk", "ˈteɪkən", "brać, wziąć", "I *took* a taxi.", "Wzięłam taksówkę."],
+    ["give", "gave", "given", "ɡɪv", "ɡeɪv", "ˈɡɪvn", "dać", "He *gave* me flowers.", "Dał mi kwiaty."],
+    ["see", "saw", "seen", "siː", "sɔː", "siːn", "widzieć", "I *saw* a great film.", "Widziałam świetny film."],
+    ["know", "knew", "known", "nəʊ", "njuː", "nəʊn", "wiedzieć, znać", "I *knew* the answer.", "Znałam odpowiedź.", "k na początku jest nieme."],
+    ["speak", "spoke", "spoken", "spiːk", "spəʊk", "ˈspəʊkən", "mówić", "I *spoke* English at work today!", "Dziś w pracy mówiłam po angielsku!"],
+    ["write", "wrote", "written", "raɪt", "rəʊt", "ˈrɪtn", "pisać", "I *wrote* an email in English.", "Napisałam maila po angielsku.", "w na początku jest nieme."],
+    ["drive", "drove", "driven", "draɪv", "drəʊv", "ˈdrɪvn", "prowadzić (samochód)", "We *drove* to the seaside.", "Pojechaliśmy samochodem nad morze."],
+    ["choose", "chose", "chosen", "tʃuːz", "tʃəʊz", "ˈtʃəʊzn", "wybrać", "I *chose* the fish.", "Wybrałam rybę."],
+    ["forget", "forgot", "forgotten", "fəˈɡet", "fəˈɡɒt", "fəˈɡɒtn", "zapomnieć", "I *forgot* my password.", "Zapomniałam hasła."],
+    ["fly", "flew", "flown", "flaɪ", "fluː", "fləʊn", "lecieć, latać", "We *flew* to Dublin.", "Polecieliśmy do Dublina."],
+    ["wear", "wore", "worn", "weə", "wɔː", "wɔːn", "mieć na sobie, nosić", "I *wore* my red dress.", "Miałam na sobie czerwoną sukienkę."],
+    ["break", "broke", "broken", "breɪk", "brəʊk", "ˈbrəʊkən", "złamać, zepsuć", "I *broke* my phone.", "Zepsułam telefon."],
+    ["wake", "woke", "woken", "weɪk", "wəʊk", "ˈwəʊkən", "budzić (się)", "I *woke* up at six.", "Obudziłam się o szóstej.", "wake up = obudzić się."],
+    ["fall", "fell", "fallen", "fɔːl", "fel", "ˈfɔːlən", "upaść, spaść", "I *fell* asleep on the sofa.", "Zasnęłam na kanapie.", "fall asleep = zasnąć."],
+  ]},
+];
+// The everyday core to learn first.
+const STARRED = new Set("be go do have make say get see come take know think give find tell eat drink buy pay leave meet speak understand sleep put feel".split(" "));
+
+const VERBS = GROUPS.flatMap((g, gi) => g.items.map(([base, past, pp, ib, ip, ipp, pl, exEn, exPl, note]) =>
+  ({ gi, base, past, pp, ib, ip, ipp, pl, exEn, exPl, note, star: STARRED.has(base) })));
+
+const SPEAK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const marked = s => esc(s).replace(/\*(.+?)\*/g, "<mark>$1</mark>");
+const plain = s => s.replace(/\*/g, "");
+const formsText = v => [v.base, v.past.replace(" / ", ", "), v.pp].join(", ");
+const form = (cls, word, ipa, star) => `<div class="f ${cls}"><b>${esc(word)}${star ? '<span class="star" title="Najważniejsze">★</span>' : ""}</b><i>${esc(ipa)}</i></div>`;
+const formsHTML = v => form("f1", v.base, v.ib, v.star) + form("f2", v.past, v.ip) + form("f3", v.pp, v.ipp);
+
+// Progress ("Umiem") is per device; storage can be unavailable, so it degrades to this page view only.
+const KEY = "werka-irregular-known";
+let known = new Set();
+try { known = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (_) {}
+function saveKnown() { try { localStorage.setItem(KEY, JSON.stringify([...known])); } catch (_) {} }
+
+const list = document.getElementById("list");
+let html = "", nav = "";
+GROUPS.forEach((g, gi) => {
+  const id = "grupa" + (gi + 1);
+  nav += `<a href="#${id}">${gi + 1}. ${esc(g.pl)}</a>`;
+  html += `<section class="stage" id="${id}"><div class="stage-head"><span class="n">${String(gi + 1).padStart(2, "0")}</span><h2>${esc(g.pl)}</h2><span class="pattern">${esc(g.pattern)}</span></div>`;
+  html += `<p class="tip">${esc(g.tip)}</p>`;
+  html += `<div class="colhead"><div class="fh"><span>Forma 1<small>teraz</small></span><span>Forma 2<small>przeszłość</small></span><span>Forma 3<small>po have</small></span></div><span>Po polsku</span></div>`;
+  VERBS.filter(v => v.gi === gi).forEach(v => {
+    html += `<div class="verb" data-base="${esc(v.base)}">
+      <div class="forms" lang="en-GB">${formsHTML(v)}<button type="button" class="cover">Powiedz na głos, potem stuknij</button></div>
+      <div class="meta"><button type="button" class="reveal"><span class="hint">Co to znaczy? Stuknij</span><span class="txt" lang="pl">${esc(v.pl)}${v.note ? `<span class="note">${esc(v.note)}</span>` : ""}</span></button></div>
+      <div class="ex"><span class="ex-en" lang="en-GB">${marked(v.exEn)}</span><span class="ex-pl">${esc(v.exPl)}</span>
+        <span class="ex-tools"><button type="button" class="say" data-say="${esc(formsText(v))}">${SPEAK_ICON}Formy</button><button type="button" class="say" data-say="${esc(plain(v.exEn))}">${SPEAK_ICON}Zdanie</button><button type="button" class="know" aria-pressed="false">Umiem</button></span>
+      </div>
+    </div>`;
+  });
+  html += `</section>`;
+});
+list.innerHTML = html;
+document.getElementById("steps").innerHTML = nav;
+
+let mode = "forms", filter = "all", view = "list";
+const passes = v => filter === "all" || (filter === "star" ? v.star : !known.has(v.base));
+const byBase = Object.fromEntries(VERBS.map(v => [v.base, v]));
+
+function refreshList() {
+  document.querySelectorAll(".verb").forEach(r => {
+    const v = byBase[r.dataset.base];
+    r.hidden = !passes(v);
+    r.querySelector(".know").setAttribute("aria-pressed", String(known.has(v.base)));
+  });
+  document.querySelectorAll("section.stage").forEach(s => { s.hidden = !s.querySelector(".verb:not([hidden])"); });
+  const pool = VERBS.filter(v => filter !== "star" || v.star);
+  const k = pool.filter(v => known.has(v.base)).length;
+  document.getElementById("progress").textContent = `Umiesz ${k} z ${pool.length}`;
+}
+function applyMode() {
+  document.querySelectorAll("#mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
+  document.body.classList.remove("m-forms", "m-en", "m-pl", "m-none");
+  document.body.classList.add("m-" + mode);
+  document.querySelectorAll(".verb").forEach(r => r.classList.remove("open", "plopen"));
+}
+function pressOnly(group, btn) { group.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === btn))); }
+
+document.getElementById("mode").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  mode = b.dataset.mode; applyMode();
+});
+document.getElementById("reset").addEventListener("click", applyMode);
+document.getElementById("filter").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  pressOnly(e.currentTarget, b); filter = b.dataset.filter; refreshList();
+  if (view === "cards") newDeck();
+});
+document.getElementById("view").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  pressOnly(e.currentTarget, b); view = b.dataset.view;
+  document.body.classList.toggle("view-list", view === "list");
+  document.body.classList.toggle("view-cards", view === "cards");
+  if (view === "cards") newDeck(); else refreshList();
+});
+list.addEventListener("click", e => {
+  const row = e.target.closest(".verb"); if (!row) return;
+  if (e.target.closest(".cover")) { row.classList.add("open"); return; }
+  if (e.target.closest(".reveal")) { if (mode === "pl") row.classList.toggle("plopen"); return; }
+  const say = e.target.closest(".say");
+  if (say) { speak(say.dataset.say); return; }
+  if (e.target.closest(".know")) { toggleKnown(row.dataset.base); refreshList(); }
+});
+function toggleKnown(base) { known.has(base) ? known.delete(base) : known.add(base); saveKnown(); }
+
+// Flashcards: shuffled deck of the filtered verbs not yet known; "Jeszcze raz" puts the card back a few places later.
+const cards = document.getElementById("cards");
+let deck = [], cur = null, shown = false, allKnown = false;
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function newDeck() {
+  const pool = VERBS.filter(v => filter !== "star" || v.star);
+  let todo = pool.filter(v => !known.has(v.base));
+  allKnown = !todo.length && pool.length > 0;
+  deck = shuffle(allKnown ? pool.slice() : todo);
+  next();
+}
+function next() { cur = deck.shift() || null; shown = false; renderCard(); }
+function renderCard() {
+  const pool = VERBS.filter(v => filter !== "star" || v.star);
+  const k = pool.filter(v => known.has(v.base)).length;
+  document.getElementById("progress").textContent = `Umiesz ${k} z ${pool.length}`;
+  const head = `<div class="count"><span>${allKnown ? "Powtórka wszystkiego" : "Zostało " + (deck.length + (cur ? 1 : 0))}</span><span>Umiesz ${k} z ${pool.length}</span></div><div class="meter"><span style="width:${pool.length ? 100 * k / pool.length : 0}%"></span></div>`;
+  if (!cur) {
+    cards.innerHTML = head + `<div class="card"><div class="meaning">Brawo!</div><p>Przeszłaś wszystkie fiszki w tym zestawie.</p><div class="card-actions"><button type="button" class="big primary" data-act="restart">Jeszcze raz</button></div></div>`;
+    return;
+  }
+  const v = cur;
+  const f1 = form("f1", v.base, v.ib, v.star);
+  const rest = shown ? `<div class="revealed" style="display:contents">${form("f2", v.past, v.ip)}${form("f3", v.pp, v.ipp)}</div>` : `<div class="slot"></div><div class="slot"></div>`;
+  cards.innerHTML = head + `<div class="card">
+    <div class="k">Po polsku</div>
+    <div class="meaning">${esc(v.pl)}</div>
+    <div class="forms" lang="en-GB">${f1}${rest}</div>
+    ${shown ? `<div class="revealed">
+        <div class="ex"><span class="ex-en" lang="en-GB">${marked(v.exEn)}</span><span class="ex-pl">${esc(v.exPl)}</span></div>
+        ${v.note ? `<div class="note">${esc(v.note)}</div>` : ""}
+        <div class="card-actions" style="margin-top:12px"><button type="button" class="say" data-say="${esc(formsText(v))}">${SPEAK_ICON}Formy</button><button type="button" class="say" data-say="${esc(plain(v.exEn))}">${SPEAK_ICON}Zdanie</button></div>
+        <div class="card-actions"><button type="button" class="big again" data-act="again">Jeszcze nie</button><button type="button" class="big primary" data-act="know">Umiem ✓</button></div>
+      </div>`
+    : `<p class="ask">Powiedz na głos formę 2 i 3.</p><div class="card-actions"><button type="button" class="big primary" data-act="show">Sprawdź</button></div>`}
+  </div>
+  <p class="keys">Klawiatura: spacja = sprawdź, ← jeszcze nie, → umiem</p>`;
+  if (shown) speak(formsText(v));
+}
+function act(a) {
+  if (a === "restart") return newDeck();
+  if (!cur) return;
+  if (a === "show" && !shown) { shown = true; renderCard(); cards.querySelector('[data-act="know"]').focus({ preventScroll: true }); }
+  else if (a === "know" && shown) { known.add(cur.base); saveKnown(); next(); }
+  else if (a === "again" && shown) { deck.splice(Math.min(3, deck.length), 0, cur); next(); }
+}
+cards.addEventListener("click", e => {
+  const say = e.target.closest(".say"); if (say) return speak(say.dataset.say);
+  const b = e.target.closest("[data-act]"); if (b) act(b.dataset.act);
+});
+document.addEventListener("keydown", e => {
+  if (view !== "cards" || e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === " " || e.key === "Enter") { if (!shown) { e.preventDefault(); act("show"); } }
+  else if (e.key === "ArrowRight") act("know");
+  else if (e.key === "ArrowLeft") act("again");
+});
+
+let voice = null;
+function pickVoice() {
+  try {
+    const vs = speechSynthesis.getVoices();
+    voice = vs.find(v => v.lang === "en-GB") || vs.find(v => /^en[-_]GB/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (_) {}
+}
+function speak(text) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-GB"; u.rate = 0.8;
+    if (voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  } catch (_) {}
+}
+if (!("speechSynthesis" in window)) document.body.classList.add("no-tts");
+else { pickVoice(); try { speechSynthesis.addEventListener("voiceschanged", pickVoice); } catch (_) {} }
+
+applyMode();
+refreshList();
+</script>
+</body>
+</html>
