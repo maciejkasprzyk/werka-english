@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angielski z Werką</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #f3f5f2; --surface: #ffffff; --ink: #18241f; --muted: #5b6a63; --line: #dbe2dd;
+  --green: #1f5c45; --green-soft: #e3efe9;
+  --f-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111814; --surface: #18221d; --ink: #e8efea; --muted: #9db0a6; --line: #2a3832;
+    --green: #7fcfa9; --green-soft: #1e3a2e; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.5; padding: 0 16px 48px; }
+.wrap { max-width: 720px; margin: 0 auto; }
+header { padding-block: 40px 24px; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(30px, 7vw, 46px); line-height: 1.05; margin: 0 0 10px; letter-spacing: -0.01em; }
+header p { margin: 0; color: var(--muted); }
+ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+a.lesson { display: flex; gap: 16px; align-items: center; padding: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; color: inherit; text-decoration: none; }
+a.lesson:hover { border-color: var(--green); }
+.num { flex: none; width: 44px; height: 44px; border-radius: 12px; background: var(--green-soft); color: var(--green); display: grid; place-items: center; font: 800 20px/1 var(--f-display); }
+.lesson h2 { margin: 0 0 2px; font: 600 19px/1.2 var(--f-display); }
+.lesson p { margin: 0; color: var(--muted); font-size: 14px; }
+.soon { opacity: .55; }
+</style>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Angielski z Werką</h1>
+    <p>Wybierz lekcję. Czytaj na głos, zakrywaj tłumaczenie i ćwicz mówienie.</p>
+  </header>
+  <ul>
+    <li><a class="lesson" href="lessons/restauracja.html">
+      <span class="num">1</span>
+      <span><h2>W restauracji</h2><p>Zamawianie, prośby i płacenie, z wymową.</p></span>
+    </a></li>
+    <li class="soon"><div class="lesson" style="display:flex;gap:16px;align-items:center;padding:18px;border:1px dashed var(--line);border-radius:16px">
+      <span class="num">+</span>
+      <span><h2>Kolejne lekcje wkrótce</h2></span>
+    </div></li>
+  </ul>
+</div>
+</body>
+</html>

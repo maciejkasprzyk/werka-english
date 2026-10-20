@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W restauracji po angielsku</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=Gentium+Book+Plus&display=swap">
+<style>
+/* Layout: one column of phrase rows, each split English (word over IPA) | Polish under a tap-to-reveal cover; sticky practice bar on top. */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --ink: #18241f;
+  --muted: #5b6a63;
+  --line: #dbe2dd;
+  --green: #1f5c45;
+  --green-soft: #e3efe9;
+  --amber: #b5651d;
+  --amber-soft: #f8ecdf;
+  --cover: #e6ebe7;
+  --cover-ink: #6b7a73;
+  --f-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-ipa: "Gentium Book Plus", "Charis SIL", "Doulos SIL", "Lucida Sans Unicode", "Arial Unicode MS", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111814; --surface: #18221d; --ink: #e8efea; --muted: #9db0a6; --line: #2a3832;
+    --green: #7fcfa9; --green-soft: #1e3a2e; --amber: #f0a868; --amber-soft: #3a2a1b;
+    --cover: #24312b; --cover-ink: #93a69c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111814; --surface: #18221d; --ink: #e8efea; --muted: #9db0a6; --line: #2a3832;
+  --green: #7fcfa9; --green-soft: #1e3a2e; --amber: #f0a868; --amber-soft: #3a2a1b;
+  --cover: #24312b; --cover-ink: #93a69c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+.wrap { max-width: 920px; margin: 0 auto; }
+header.intro { padding-block: 32px 16px; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(28px, 6vw, 44px); line-height: 1.05; margin: 0 0 10px; text-wrap: balance; letter-spacing: -0.01em; }
+.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; font-size: 14px; color: var(--muted); align-items: center; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 8px; padding-block: 10px; align-items: center;
+}
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: transparent; color: var(--muted); font: 600 13px/1 var(--f-body); padding: 9px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--green); color: var(--bg); }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 13px/1 var(--f-body); padding: 9px 12px; border-radius: 999px; cursor: pointer; }
+.btn:hover, .seg button:hover { filter: brightness(0.97); }
+button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.bar .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; margin-right: 2px; }
+
+nav.steps { display: flex; gap: 6px; overflow-x: auto; padding-block: 12px 4px; scrollbar-width: thin; }
+a.home { display: inline-block; margin-bottom: 14px; color: var(--green); font-weight: 600; font-size: 14px; text-decoration: none; }
+nav.steps a { flex: none; text-decoration: none; color: var(--green); font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: var(--green-soft); }
+
+section.stage { margin-top: 28px; }
+.stage-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+.stage-head .n { font-family: var(--f-display); font-weight: 800; font-size: 15px; color: var(--amber); font-variant-numeric: tabular-nums; }
+.stage-head h2 { font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 4vw, 26px); margin: 0; line-height: 1.15; }
+.stage-head .pl { color: var(--muted); font-size: 15px; margin-left: auto; text-align: right; }
+
+.colhead { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; padding-block: 8px 2px; }
+
+.row { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); align-items: start; }
+.row[hidden] { display: none !important; }
+.en { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.who { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px 3px 7px; border-radius: 999px; width: fit-content; }
+.who::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.who.you { color: var(--green); background: var(--green-soft); }
+.who.waiter { color: var(--amber); background: var(--amber-soft); }
+.line { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: flex-start; }
+.w { display: inline-flex; flex-direction: column; align-items: flex-start; }
+.w b { font-weight: 600; font-size: 20px; line-height: 1.25; }
+.w i { font-style: normal; font-family: var(--f-ipa); font-size: 15px; color: var(--muted); line-height: 1.3; white-space: nowrap; }
+.w i::before { content: "/"; opacity: .45; } .w i::after { content: "/"; opacity: .45; }
+.say { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; color: var(--green); font: 600 13px/1 var(--f-body); cursor: pointer; padding: 4px 0; }
+.say svg { width: 16px; height: 16px; }
+.no-tts .say { display: none; }
+
+.pl-cell { min-width: 0; }
+.reveal { width: 100%; text-align: left; border: 1px dashed transparent; border-radius: 10px; padding: 10px 12px; background: transparent; color: var(--ink); font: 500 17px/1.4 var(--f-body); cursor: pointer; min-height: 48px; }
+.reveal .txt { display: block; }
+.reveal .hint { display: none; font-size: 13px; font-weight: 600; color: var(--cover-ink); }
+.reveal.covered { background: var(--cover); border-color: var(--line); }
+.reveal.covered .txt { display: none; }
+.reveal.covered .hint { display: block; }
+.reveal .note { display: block; font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 4px; }
+.reveal.covered .note { display: none; }
+
+/* "Hide English" mode: cover the English words, keep Polish visible, so she says it first */
+.en-hidden .line, .en-hidden .say { visibility: hidden; height: 0; overflow: hidden; }
+.en-hidden .row.shown .line, .en-hidden .row.shown .say { visibility: visible; height: auto; overflow: visible; }
+.en-cover { display: none; border: 1px dashed var(--line); background: var(--cover); color: var(--cover-ink); border-radius: 10px; padding: 10px 12px; font: 600 13px/1.3 var(--f-body); cursor: pointer; text-align: left; min-height: 48px; }
+.en-hidden .en-cover { display: block; }
+.en-hidden .row.shown .en-cover { display: none; }
+
+footer { margin-top: 36px; color: var(--muted); font-size: 14px; max-width: 62ch; }
+footer h3 { font-family: var(--f-display); color: var(--ink); font-size: 17px; margin: 0 0 6px; }
+footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+@media (max-width: 560px) {
+  .row, .colhead { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 10px; }
+  .w b { font-size: 18px; }
+  .w i { font-size: 14px; }
+  .reveal { font-size: 15px; padding: 8px 10px; }
+  .stage-head { flex-wrap: wrap; }
+  .stage-head .pl { margin-left: 0; width: 100%; text-align: left; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .txt { animation: none; }
+  .reveal:not(.covered) .txt { animation: fade .18s ease-out; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <a class="home" href="../">← Wszystkie lekcje</a>
+    <h1>W restauracji po angielsku</h1>
+    <p>Zwroty od wejścia do wyjścia. Pod każdym słowem jest brytyjska wymowa. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.</p>
+    <div class="legend">
+      <span class="who you">Ty</span> to, co możesz powiedzieć
+      <span class="who waiter">Kelner</span> to, co możesz usłyszeć
+    </div>
+  </header>
+
+  <div class="bar" role="toolbar" aria-label="Ćwiczenie">
+    <span class="label">Zakryj</span>
+    <div class="seg" id="mode">
+      <button type="button" id="mode-pl" data-mode="pl" aria-pressed="true">Polski</button>
+      <button type="button" id="mode-en" data-mode="en" aria-pressed="false">Angielski</button>
+      <button type="button" id="mode-none" data-mode="none" aria-pressed="false">Nic</button>
+    </div>
+    <div class="seg" id="who">
+      <button type="button" id="who-all" data-who="all" aria-pressed="true">Wszystko</button>
+      <button type="button" id="who-you" data-who="you" aria-pressed="false">Ty</button>
+      <button type="button" id="who-waiter" data-who="waiter" aria-pressed="false">Kelner</button>
+    </div>
+    <button type="button" class="btn" id="reset">Zakryj od nowa</button>
+  </div>
+
+  <nav class="steps" id="steps" aria-label="Etapy"></nav>
+  <main id="list"></main>
+
+  <footer>
+    <h3>Jak ćwiczyć</h3>
+    <ul>
+      <li>Najpierw tryb „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.</li>
+      <li>Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.</li>
+      <li>Przycisk „Posłuchaj” czyta zdanie brytyjskim głosem, jeśli telefon go ma.</li>
+      <li>Grajcie scenkę we dwoje: jedno jest kelnerem, drugie gościem.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+// Each phrase: speaker, English, IPA (one token per English word, same order), Polish, optional note.
+const STAGES = [
+  { en: "Arriving", pl: "Wejście i stolik", items: [
+    ["waiter", "Hello, welcome!", "həˈləʊ ˈwelkəm", "Dzień dobry, witamy!"],
+    ["waiter", "Do you have a reservation?", "də juː hæv ə ˌrezəˈveɪʃn", "Czy ma pani rezerwację?"],
+    ["you", "Yes, I have a reservation for two.", "jes aɪ hæv ə ˌrezəˈveɪʃn fə tuː", "Tak, mam rezerwację dla dwóch osób."],
+    ["you", "No. A table for two, please.", "nəʊ ə ˈteɪbl fə tuː pliːz", "Nie. Stolik dla dwóch osób, proszę."],
+    ["waiter", "How many people?", "haʊ ˈmeni ˈpiːpl", "Ile osób?"],
+    ["waiter", "Inside or outside?", "ˌɪnˈsaɪd ɔːr ˌaʊtˈsaɪd", "W środku czy na zewnątrz?", "Przed samogłoską „or” łączy się z następnym słowem przez lekkie r."],
+    ["you", "Can we sit by the window?", "kən wiː sɪt baɪ ðə ˈwɪndəʊ", "Czy możemy usiąść przy oknie?"],
+    ["waiter", "Follow me, please.", "ˈfɒləʊ miː pliːz", "Proszę za mną."],
+    ["waiter", "Here's the menu.", "hɪəz ðə ˈmenjuː", "Oto karta."],
+  ]},
+  { en: "Drinks", pl: "Napoje", items: [
+    ["waiter", "Can I get you something to drink?", "kən aɪ ɡet juː ˈsʌmθɪŋ tə drɪŋk", "Czy podać coś do picia?"],
+    ["you", "Could I have some water, please?", "kʊd aɪ hæv səm ˈwɔːtə pliːz", "Czy mogę prosić o wodę?"],
+    ["waiter", "Still or sparkling?", "stɪl ɔː ˈspɑːklɪŋ", "Niegazowaną czy gazowaną?"],
+    ["you", "Still, please.", "stɪl pliːz", "Niegazowaną, proszę."],
+    ["you", "Tap water is fine.", "tæp ˈwɔːtər ɪz faɪn", "Może być woda z kranu.", "W Wielkiej Brytanii woda z kranu w restauracji jest za darmo."],
+    ["you", "A glass of white wine, please.", "ə ɡlɑːs əv waɪt waɪn pliːz", "Kieliszek białego wina, proszę."],
+    ["waiter", "Anything else?", "ˈeniθɪŋ els", "Coś jeszcze?"],
+    ["you", "That's all for now, thanks.", "ðæts ɔːl fə naʊ θæŋks", "Na razie to wszystko, dziękuję."],
+  ]},
+  { en: "Ordering food", pl: "Zamawianie jedzenia", items: [
+    ["waiter", "Are you ready to order?", "ɑː juː ˈredi tʊ ˈɔːdə", "Czy są państwo gotowi zamówić?"],
+    ["you", "Not yet. A few more minutes, please.", "nɒt jet ə fjuː mɔː ˈmɪnɪts pliːz", "Jeszcze nie. Jeszcze kilka minut, proszę."],
+    ["you", "Yes, we're ready.", "jes wɪə ˈredi", "Tak, jesteśmy gotowi."],
+    ["you", "What do you recommend?", "wɒt də juː ˌrekəˈmend", "Co pan poleca?"],
+    ["waiter", "The fish is very good today.", "ðə fɪʃ ɪz ˈveri ɡʊd təˈdeɪ", "Ryba jest dziś bardzo dobra."],
+    ["waiter", "Would you like a starter?", "wʊd juː laɪk ə ˈstɑːtə", "Czy podać przystawkę?"],
+    ["you", "I'd like the chicken, please.", "aɪd laɪk ðə ˈtʃɪkɪn pliːz", "Poproszę kurczaka."],
+    ["you", "I'll have the same.", "aɪl hæv ðə seɪm", "Dla mnie to samo."],
+    ["you", "Is this dish spicy?", "ɪz ðɪs dɪʃ ˈspaɪsi", "Czy to danie jest ostre?"],
+    ["you", "Is there anything vegetarian?", "ɪz ðeər ˈeniθɪŋ ˌvedʒəˈteəriən", "Czy jest coś wegetariańskiego?"],
+    ["you", "I'm allergic to nuts.", "aɪm əˈlɜːdʒɪk tə nʌts", "Mam alergię na orzechy."],
+    ["waiter", "How would you like your steak?", "haʊ wʊd juː laɪk jɔː steɪk", "Jak wysmażyć stek?"],
+    ["you", "Medium, please.", "ˈmiːdiəm pliːz", "Średnio wysmażony, proszę.", "Rare = krwisty, well done = dobrze wysmażony."],
+    ["waiter", "It comes with chips or salad.", "ɪt kʌmz wɪð tʃɪps ɔː ˈsæləd", "Do tego są frytki albo sałatka.", "Po brytyjsku chips to frytki, a crisps to chipsy."],
+    ["you", "Salad, please.", "ˈsæləd pliːz", "Sałatkę, proszę."],
+    ["waiter", "Sorry, we don't have that today.", "ˈsɒri wiː dəʊnt hæv ðæt təˈdeɪ", "Przepraszam, dziś tego nie mamy."],
+  ]},
+  { en: "During the meal", pl: "W trakcie posiłku", items: [
+    ["waiter", "Enjoy your meal!", "ɪnˈdʒɔɪ jɔː miːl", "Smacznego!"],
+    ["you", "Thank you.", "θæŋk juː", "Dziękuję."],
+    ["waiter", "Is everything OK?", "ɪz ˈevriθɪŋ əʊˈkeɪ", "Czy wszystko w porządku?"],
+    ["you", "Yes, it's delicious, thank you.", "jes ɪts dɪˈlɪʃəs θæŋk juː", "Tak, jest pyszne, dziękuję."],
+    ["you", "Excuse me!", "ɪkˈskjuːz miː", "Przepraszam!", "Tak przywołujesz kelnera."],
+    ["you", "Could we have some more bread?", "kʊd wiː hæv səm mɔː bred", "Czy możemy prosić o więcej chleba?"],
+    ["you", "Sorry, this is not what I ordered.", "ˈsɒri ðɪs ɪz nɒt wɒt aɪ ˈɔːdəd", "Przepraszam, to nie jest to, co zamówiłam."],
+    ["you", "Where are the toilets?", "weər ə ðə ˈtɔɪləts", "Gdzie są toalety?"],
+    ["waiter", "Can I take your plates?", "kən aɪ teɪk jɔː pleɪts", "Czy mogę zabrać talerze?"],
+    ["waiter", "Would you like to see the dessert menu?", "wʊd juː laɪk tə siː ðə dɪˈzɜːt ˈmenjuː", "Czy chcą państwo zobaczyć kartę deserów?"],
+    ["you", "No, thank you. I'm full.", "nəʊ θæŋk juː aɪm fʊl", "Nie, dziękuję. Jestem najedzona."],
+    ["you", "Two coffees, please.", "tuː ˈkɒfiz pliːz", "Dwie kawy, proszę."],
+  ]},
+  { en: "The bill", pl: "Prośba o rachunek", items: [
+    ["you", "Could we have the bill, please?", "kʊd wiː hæv ðə bɪl pliːz", "Czy możemy prosić o rachunek?", "W Wielkiej Brytanii rachunek to bill. Amerykanie mówią check."],
+    ["waiter", "Of course. One moment.", "əv kɔːs wʌn ˈməʊmənt", "Oczywiście. Chwileczkę."],
+    ["waiter", "Together or separately?", "təˈɡeðər ɔː ˈseprətli", "Razem czy osobno?"],
+    ["you", "Together, please.", "təˈɡeðə pliːz", "Razem, proszę."],
+    ["you", "Can we pay separately?", "kən wiː peɪ ˈseprətli", "Czy możemy zapłacić osobno?"],
+    ["you", "Is service included?", "ɪz ˈsɜːvɪs ɪnˈkluːdɪd", "Czy opłata za obsługę jest wliczona?"],
+    ["you", "I think there's a mistake in the bill.", "aɪ θɪŋk ðeəz ə mɪˈsteɪk ɪn ðə bɪl", "Chyba w rachunku jest błąd."],
+  ]},
+  { en: "Paying", pl: "Płacenie", items: [
+    ["waiter", "How would you like to pay?", "haʊ wʊd juː laɪk tə peɪ", "Jak chce pani zapłacić?"],
+    ["you", "Can I pay by card?", "kən aɪ peɪ baɪ kɑːd", "Czy mogę zapłacić kartą?"],
+    ["you", "By card, please.", "baɪ kɑːd pliːz", "Kartą, proszę."],
+    ["you", "In cash.", "ɪn kæʃ", "Gotówką."],
+    ["waiter", "You can tap your card here.", "juː kən tæp jɔː kɑːd hɪə", "Proszę przyłożyć kartę tutaj."],
+    ["waiter", "Please enter your PIN.", "pliːz ˈentə jɔː pɪn", "Proszę wpisać PIN."],
+    ["waiter", "Would you like a receipt?", "wʊd juː laɪk ə rɪˈsiːt", "Czy podać paragon?"],
+    ["you", "Yes, please.", "jes pliːz", "Tak, poproszę."],
+    ["you", "Could I have a receipt, please?", "kʊd aɪ hæv ə rɪˈsiːt pliːz", "Czy mogę prosić o paragon?", "W słowie receipt nie wymawia się „p”."],
+    ["you", "Keep the change.", "kiːp ðə tʃeɪndʒ", "Reszty nie trzeba."],
+  ]},
+  { en: "Leaving", pl: "Wyjście", items: [
+    ["waiter", "Thank you. Have a nice evening!", "θæŋk juː hæv ə naɪs ˈiːvnɪŋ", "Dziękujemy. Miłego wieczoru!"],
+    ["you", "Thank you, it was lovely.", "θæŋk juː ɪt wəz ˈlʌvli", "Dziękujemy, było bardzo miło."],
+    ["you", "Thanks, you too!", "θæŋks juː tuː", "Dzięki, wzajemnie!"],
+    ["waiter", "See you again soon!", "siː juː əˈɡen suːn", "Do zobaczenia wkrótce!"],
+    ["you", "Goodbye!", "ɡʊdˈbaɪ", "Do widzenia!"],
+  ]},
+];
+
+const SPEAK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const list = document.getElementById("list");
+const steps = document.getElementById("steps");
+let html = "", nav = "";
+STAGES.forEach((st, si) => {
+  const id = "etap" + (si + 1);
+  nav += `<a href="#${id}">${si + 1}. ${esc(st.pl)}</a>`;
+  html += `<section class="stage" id="${id}"><div class="stage-head"><span class="n">${String(si + 1).padStart(2, "0")}</span><h2>${esc(st.en)}</h2><span class="pl">${esc(st.pl)}</span></div>`;
+  html += `<div class="colhead"><span>English</span><span>Polski</span></div>`;
+  st.items.forEach(([who, en, ipa, pl, note]) => {
+    const words = en.split(" "), sounds = ipa.split(" ");
+    const line = words.map((w, i) => `<span class="w"><b>${esc(w)}</b><i>${esc(sounds[i] || "")}</i></span>`).join("");
+    html += `<div class="row" data-who="${who}">
+      <div class="en">
+        <span class="who ${who}">${who === "you" ? "Ty" : "Kelner"}</span>
+        <button type="button" class="en-cover">Powiedz to po angielsku, potem stuknij</button>
+        <div class="line" lang="en-GB">${line}</div>
+        <button type="button" class="say" data-say="${esc(en)}">${SPEAK_ICON}Posłuchaj</button>
+      </div>
+      <div class="pl-cell"><button type="button" class="reveal covered" aria-expanded="false"><span class="hint">Stuknij, żeby odkryć</span><span class="txt" lang="pl">${esc(pl)}${note ? `<span class="note">${esc(note)}</span>` : ""}</span></button></div>
+    </div>`;
+  });
+  html += `</section>`;
+});
+list.innerHTML = html;
+steps.innerHTML = nav;
+
+let mode = "pl";
+function applyMode() {
+  document.querySelectorAll("#mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
+  document.body.classList.toggle("en-hidden", mode === "en");
+  document.querySelectorAll(".row").forEach(r => r.classList.remove("shown"));
+  document.querySelectorAll(".reveal").forEach(b => {
+    const cover = mode === "pl";
+    b.classList.toggle("covered", cover);
+    b.setAttribute("aria-expanded", String(!cover));
+  });
+}
+document.getElementById("mode").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  mode = b.dataset.mode; applyMode();
+});
+document.getElementById("reset").addEventListener("click", applyMode);
+document.getElementById("who").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#who button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  document.querySelectorAll(".row").forEach(r => { r.hidden = b.dataset.who !== "all" && r.dataset.who !== b.dataset.who; });
+});
+list.addEventListener("click", e => {
+  const rev = e.target.closest(".reveal");
+  if (rev) { const c = rev.classList.toggle("covered"); rev.setAttribute("aria-expanded", String(!c)); return; }
+  const cov = e.target.closest(".en-cover");
+  if (cov) { cov.closest(".row").classList.add("shown"); return; }
+  const say = e.target.closest(".say");
+  if (say) speak(say.dataset.say);
+});
+
+let voice = null;
+function pickVoice() {
+  try {
+    const vs = speechSynthesis.getVoices();
+    voice = vs.find(v => v.lang === "en-GB") || vs.find(v => /^en[-_]GB/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (_) {}
+}
+function speak(text) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-GB"; u.rate = 0.85;
+    if (voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  } catch (_) {}
+}
+if (!("speechSynthesis" in window)) document.body.classList.add("no-tts");
+else { pickVoice(); try { speechSynthesis.addEventListener("voiceschanged", pickVoice); } catch (_) {} }
+</script>
