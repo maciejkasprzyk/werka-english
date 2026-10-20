@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frazy codzienne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=Gentium+Book+Plus&display=swap">
+<style>
+/* Layout: one column of phrase rows, each split English (word over IPA) | Polish under a tap-to-reveal cover; sticky practice bar on top. */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --ink: #18241f;
+  --muted: #5b6a63;
+  --line: #dbe2dd;
+  --green: #1f5c45;
+  --green-soft: #e3efe9;
+  --amber: #b5651d;
+  --amber-soft: #f8ecdf;
+  --cover: #e6ebe7;
+  --cover-ink: #6b7a73;
+  --f-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-ipa: "Gentium Book Plus", "Charis SIL", "Doulos SIL", "Lucida Sans Unicode", "Arial Unicode MS", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111814; --surface: #18221d; --ink: #e8efea; --muted: #9db0a6; --line: #2a3832;
+    --green: #7fcfa9; --green-soft: #1e3a2e; --amber: #f0a868; --amber-soft: #3a2a1b;
+    --cover: #24312b; --cover-ink: #93a69c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111814; --surface: #18221d; --ink: #e8efea; --muted: #9db0a6; --line: #2a3832;
+  --green: #7fcfa9; --green-soft: #1e3a2e; --amber: #f0a868; --amber-soft: #3a2a1b;
+  --cover: #24312b; --cover-ink: #93a69c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+.wrap { max-width: 920px; margin: 0 auto; }
+header.intro { padding-block: 32px 16px; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(28px, 6vw, 44px); line-height: 1.05; margin: 0 0 10px; text-wrap: balance; letter-spacing: -0.01em; }
+.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; font-size: 14px; color: var(--muted); align-items: center; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 8px; padding-block: 10px; align-items: center;
+}
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: transparent; color: var(--muted); font: 600 13px/1 var(--f-body); padding: 9px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--green); color: var(--bg); }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 13px/1 var(--f-body); padding: 9px 12px; border-radius: 999px; cursor: pointer; }
+.btn:hover, .seg button:hover { filter: brightness(0.97); }
+button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.bar .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; margin-right: 2px; }
+
+nav.steps { display: flex; gap: 6px; overflow-x: auto; padding-block: 12px 4px; scrollbar-width: thin; }
+a.home { display: inline-block; margin-bottom: 14px; color: var(--green); font-weight: 600; font-size: 14px; text-decoration: none; }
+nav.steps a { flex: none; text-decoration: none; color: var(--green); font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: var(--green-soft); }
+
+section.stage { margin-top: 28px; }
+.stage-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+.stage-head .n { font-family: var(--f-display); font-weight: 800; font-size: 15px; color: var(--amber); font-variant-numeric: tabular-nums; }
+.stage-head h2 { font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 4vw, 26px); margin: 0; line-height: 1.15; }
+.stage-head .pl { color: var(--muted); font-size: 15px; margin-left: auto; text-align: right; }
+
+.colhead { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; padding-block: 8px 2px; }
+
+.row { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); align-items: start; }
+.row[hidden] { display: none !important; }
+.en { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.who { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px 3px 7px; border-radius: 999px; width: fit-content; }
+.who::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.who.you { color: var(--green); background: var(--green-soft); }
+.who.him { color: var(--amber); background: var(--amber-soft); }
+.line { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: flex-start; }
+.w { display: inline-flex; flex-direction: column; align-items: flex-start; }
+.w b { font-weight: 600; font-size: 20px; line-height: 1.25; }
+.w i { font-style: normal; font-family: var(--f-ipa); font-size: 15px; color: var(--muted); line-height: 1.3; white-space: nowrap; }
+.w i::before { content: "/"; opacity: .45; } .w i::after { content: "/"; opacity: .45; }
+.say { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; color: var(--green); font: 600 13px/1 var(--f-body); cursor: pointer; padding: 4px 0; }
+.say svg { width: 16px; height: 16px; }
+.no-tts .say { display: none; }
+
+.pl-cell { min-width: 0; }
+.reveal { width: 100%; text-align: left; border: 1px dashed transparent; border-radius: 10px; padding: 10px 12px; background: transparent; color: var(--ink); font: 500 17px/1.4 var(--f-body); cursor: pointer; min-height: 48px; }
+.reveal .txt { display: block; }
+.reveal .hint { display: none; font-size: 13px; font-weight: 600; color: var(--cover-ink); }
+.reveal.covered { background: var(--cover); border-color: var(--line); }
+.reveal.covered .txt { display: none; }
+.reveal.covered .hint { display: block; }
+.reveal .note { display: block; font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 4px; }
+.reveal.covered .note { display: none; }
+
+/* "Hide English" mode: cover the English words, keep Polish visible, so she says it first */
+.en-hidden .line, .en-hidden .say { visibility: hidden; height: 0; overflow: hidden; }
+.en-hidden .row.shown .line, .en-hidden .row.shown .say { visibility: visible; height: auto; overflow: visible; }
+.en-cover { display: none; border: 1px dashed var(--line); background: var(--cover); color: var(--cover-ink); border-radius: 10px; padding: 10px 12px; font: 600 13px/1.3 var(--f-body); cursor: pointer; text-align: left; min-height: 48px; }
+.en-hidden .en-cover { display: block; }
+.en-hidden .row.shown .en-cover { display: none; }
+
+footer { margin-top: 36px; color: var(--muted); font-size: 14px; max-width: 62ch; }
+footer h3 { font-family: var(--f-display); color: var(--ink); font-size: 17px; margin: 0 0 6px; }
+footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+@media (max-width: 560px) {
+  .row, .colhead { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 10px; }
+  .w b { font-size: 18px; }
+  .w i { font-size: 14px; }
+  .reveal { font-size: 15px; padding: 8px 10px; }
+  .stage-head { flex-wrap: wrap; }
+  .stage-head .pl { margin-left: 0; width: 100%; text-align: left; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .txt { animation: none; }
+  .reveal:not(.covered) .txt { animation: fade .18s ease-out; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <a class="home" href="../">← Wszystkie lekcje</a>
+    <h1>Frazy codzienne</h1>
+    <p>Zwroty na cały dzień w domu: od „Good morning” do „Good night”. Pod każdym słowem jest brytyjska wymowa. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.</p>
+    <div class="legend">
+      <span class="who you">Ty</span> to, co mówisz ty
+      <span class="who him">Maciej</span> to, co usłyszysz od Maćka
+    </div>
+  </header>
+
+  <div class="bar" role="toolbar" aria-label="Ćwiczenie">
+    <span class="label">Zakryj</span>
+    <div class="seg" id="mode">
+      <button type="button" id="mode-pl" data-mode="pl" aria-pressed="true">Polski</button>
+      <button type="button" id="mode-en" data-mode="en" aria-pressed="false">Angielski</button>
+      <button type="button" id="mode-none" data-mode="none" aria-pressed="false">Nic</button>
+    </div>
+    <div class="seg" id="who">
+      <button type="button" id="who-all" data-who="all" aria-pressed="true">Wszystko</button>
+      <button type="button" id="who-you" data-who="you" aria-pressed="false">Ty</button>
+      <button type="button" id="who-him" data-who="him" aria-pressed="false">Maciej</button>
+    </div>
+    <div class="seg" id="rate" aria-label="Tempo czytania">
+      <button type="button" data-rate="0.6" aria-pressed="false">Wolno</button>
+      <button type="button" data-rate="0.85" aria-pressed="true">Normalnie</button>
+      <button type="button" data-rate="1" aria-pressed="false">Szybko</button>
+    </div>
+  </div>
+
+  <nav class="steps" id="steps" aria-label="Etapy"></nav>
+  <main id="list"></main>
+
+  <footer>
+    <h3>Jak ćwiczyć</h3>
+    <ul>
+      <li>Najpierw tryb „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie. Stuknij tryb jeszcze raz, żeby wszystko znowu zakryć.</li>
+      <li>Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.</li>
+      <li>Wybierzcie jedną porę dnia, na przykład kolację, kiedy mówicie tylko po angielsku. Na początku wystarczy 10 minut.</li>
+      <li>Nie znasz słowa? Zapytaj: „How do you say … in English?”. Błędy są w porządku, ważne, żeby mówić.</li>
+      <li>Przycisk „Posłuchaj” czyta zdanie brytyjskim głosem, jeśli telefon go ma. Tempo zmienisz na pasku u góry.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+// Each phrase: speaker, English, IPA (one token per English word, same order), Polish, optional note.
+const STAGES = [
+  { en: "Morning", pl: "Rano", items: [
+    ["him", "Good morning!", "ɡʊd ˈmɔːnɪŋ", "Dzień dobry!"],
+    ["you", "Morning! How did you sleep?", "ˈmɔːnɪŋ haʊ dɪd juː sliːp", "Dzień dobry! Jak spałeś?", "Rano często mówi się samo Morning!"],
+    ["him", "I slept really well, thanks.", "aɪ slept ˈrɪəli wel θæŋks", "Spałem bardzo dobrze, dzięki."],
+    ["you", "I didn't sleep very well.", "aɪ ˈdɪdnt sliːp ˈveri wel", "Nie spałam zbyt dobrze."],
+    ["you", "I'm still tired.", "aɪm stɪl ˈtaɪəd", "Wciąż jestem zmęczona."],
+    ["him", "Do you want a coffee?", "də juː wɒnt ə ˈkɒfi", "Chcesz kawę?"],
+    ["you", "Yes, please. I need a coffee!", "jes pliːz aɪ niːd ə ˈkɒfi", "Tak, poproszę. Potrzebuję kawy!"],
+    ["you", "I'm going to have a shower.", "aɪm ˈɡəʊɪŋ tə hæv ə ˈʃaʊə", "Idę wziąć prysznic.", "have a shower = wziąć prysznic. Amerykanie mówią take a shower."],
+    ["you", "I'm going to get washed.", "aɪm ˈɡəʊɪŋ tə ɡet wɒʃt", "Idę się umyć."],
+    ["him", "Hurry up, we're late!", "ˈhʌri ʌp wɪə leɪt", "Pospiesz się, jesteśmy spóźnieni!"],
+    ["you", "What are you doing today?", "wɒt ə juː ˈduːɪŋ təˈdeɪ", "Co dziś robisz?"],
+  ]},
+  { en: "Leaving home", pl: "Wychodzenie z domu", items: [
+    ["you", "I'm going to work.", "aɪm ˈɡəʊɪŋ tə wɜːk", "Idę do pracy."],
+    ["him", "What time will you be back?", "wɒt taɪm wɪl juː bi bæk", "O której wrócisz?"],
+    ["you", "I'll be back at six.", "aɪl bi bæk ət sɪks", "Wrócę o szóstej."],
+    ["you", "I'll be home late today.", "aɪl bi həʊm leɪt təˈdeɪ", "Dziś wrócę późno."],
+    ["you", "Have you seen my keys?", "həv juː siːn maɪ kiːz", "Widziałeś moje klucze?"],
+    ["him", "They're on the table.", "ðeər ɒn ðə ˈteɪbl", "Są na stole."],
+    ["him", "Have a nice day!", "hæv ə naɪs deɪ", "Miłego dnia!"],
+    ["you", "You too! See you later!", "juː tuː siː juː ˈleɪtə", "Nawzajem! Do zobaczenia!"],
+    ["him", "Text me when you get there.", "tekst miː wen juː ɡet ðeə", "Napisz mi, jak dojedziesz."],
+  ]},
+  { en: "After work", pl: "Po pracy", items: [
+    ["him", "Hi! How are you?", "haɪ haʊ ɑː juː", "Cześć! Jak się masz?"],
+    ["you", "I'm fine, thanks. And you?", "aɪm faɪn θæŋks ənd juː", "Dobrze, dzięki. A ty?"],
+    ["you", "Not bad. A bit tired.", "nɒt bæd ə bɪt ˈtaɪəd", "Nieźle. Trochę zmęczona."],
+    ["him", "How was work?", "haʊ wəz wɜːk", "Jak było w pracy?"],
+    ["you", "It was OK.", "ɪt wəz əʊˈkeɪ", "Było w porządku."],
+    ["you", "It was really busy.", "ɪt wəz ˈrɪəli ˈbɪzi", "Było bardzo dużo pracy.", "busy = zajęty. O dniu w pracy znaczy, że dużo się działo."],
+    ["you", "It was a long day.", "ɪt wəz ə lɒŋ deɪ", "To był długi dzień."],
+    ["him", "What did you do today?", "wɒt dɪd juː duː təˈdeɪ", "Co dziś robiłaś?"],
+    ["you", "Nothing special.", "ˈnʌθɪŋ ˈspeʃl", "Nic specjalnego."],
+    ["you", "And how was your day?", "ənd haʊ wəz jɔː deɪ", "A jak tobie minął dzień?"],
+  ]},
+  { en: "Food", pl: "Jedzenie", items: [
+    ["him", "What did you eat today?", "wɒt dɪd juː iːt təˈdeɪ", "Co dziś jadłaś?"],
+    ["you", "I had a sandwich for lunch.", "aɪ hæd ə ˈsænwɪdʒ fə lʌntʃ", "Na lunch zjadłam kanapkę."],
+    ["you", "I haven't eaten anything yet.", "aɪ ˈhævnt ˈiːtn ˈeniθɪŋ jet", "Jeszcze nic nie jadłam."],
+    ["you", "I'm starving!", "aɪm ˈstɑːvɪŋ", "Umieram z głodu!"],
+    ["him", "What do you want for dinner?", "wɒt də juː wɒnt fə ˈdɪnə", "Co chcesz na kolację?"],
+    ["you", "Let's order a pizza.", "lets ˈɔːdər ə ˈpiːtsə", "Zamówmy pizzę."],
+    ["you", "I'll cook tonight.", "aɪl kʊk təˈnaɪt", "Dziś ja gotuję."],
+    ["him", "Dinner's ready!", "ˈdɪnəz ˈredi", "Kolacja gotowa!"],
+    ["you", "It's delicious!", "ɪts dɪˈlɪʃəs", "Pyszne!"],
+    ["you", "Can you pass me the salt?", "kən juː pɑːs miː ðə sɔːlt", "Podasz mi sól?"],
+    ["you", "I'm full.", "aɪm fʊl", "Jestem najedzona."],
+  ]},
+  { en: "At home", pl: "W domu", items: [
+    ["him", "What are you doing?", "wɒt ə juː ˈduːɪŋ", "Co robisz?"],
+    ["you", "I'm cooking.", "aɪm ˈkʊkɪŋ", "Gotuję."],
+    ["you", "I'm watching TV.", "aɪm ˈwɒtʃɪŋ ˌtiːˈviː", "Oglądam telewizję."],
+    ["you", "I'm talking to my mum.", "aɪm ˈtɔːkɪŋ tə maɪ mʌm", "Rozmawiam z mamą."],
+    ["you", "I'll be right back.", "aɪl bi raɪt bæk", "Zaraz wracam."],
+    ["you", "Can you help me?", "kən juː help miː", "Pomożesz mi?"],
+    ["him", "Sure, no problem.", "ʃɔː nəʊ ˈprɒbləm", "Jasne, nie ma problemu."],
+    ["you", "I'm bored.", "aɪm bɔːd", "Nudzi mi się."],
+    ["him", "What do you want to do tonight?", "wɒt də juː wɒnt tə duː təˈnaɪt", "Co chcesz robić dziś wieczorem?"],
+    ["you", "Let's watch a film.", "lets wɒtʃ ə fɪlm", "Obejrzyjmy film."],
+    ["you", "Let's go for a walk.", "lets ɡəʊ fər ə wɔːk", "Chodźmy na spacer."],
+  ]},
+  { en: "Evening", pl: "Wieczór", items: [
+    ["you", "I'm going to have a bath.", "aɪm ˈɡəʊɪŋ tə hæv ə bɑːθ", "Idę się wykąpać.", "bath = kąpiel w wannie, shower = prysznic."],
+    ["you", "I'm going to brush my teeth.", "aɪm ˈɡəʊɪŋ tə brʌʃ maɪ tiːθ", "Idę umyć zęby."],
+    ["him", "Are you coming to bed?", "ə juː ˈkʌmɪŋ tə bed", "Idziesz spać?"],
+    ["you", "I'm going to bed.", "aɪm ˈɡəʊɪŋ tə bed", "Idę spać."],
+    ["you", "I'm so sleepy.", "aɪm səʊ ˈsliːpi", "Strasznie chce mi się spać."],
+    ["you", "Can you turn off the light?", "kən juː tɜːn ɒf ðə laɪt", "Możesz zgasić światło?"],
+    ["him", "Did you set an alarm?", "dɪd juː set ən əˈlɑːm", "Nastawiłaś budzik?"],
+    ["you", "Good night!", "ɡʊd naɪt", "Dobranoc!"],
+    ["him", "Sleep well!", "sliːp wel", "Śpij dobrze!"],
+  ]},
+  { en: "Feelings and small words", pl: "Uczucia i drobne zwroty", items: [
+    ["him", "Are you OK?", "ɑː juː əʊˈkeɪ", "Wszystko w porządku?"],
+    ["him", "You look tired.", "juː lʊk ˈtaɪəd", "Wyglądasz na zmęczoną."],
+    ["you", "I've got a headache.", "aɪv ɡɒt ə ˈhedeɪk", "Boli mnie głowa."],
+    ["you", "I'm in a good mood today.", "aɪm ɪn ə ɡʊd muːd təˈdeɪ", "Mam dziś dobry humor."],
+    ["you", "Never mind.", "ˈnevə maɪnd", "Nieważne."],
+    ["you", "No worries.", "nəʊ ˈwʌriz", "Nie ma sprawy."],
+    ["you", "Sorry, I didn't understand.", "ˈsɒri aɪ ˈdɪdnt ˌʌndəˈstænd", "Przepraszam, nie zrozumiałam."],
+    ["you", "Can you say that again, please?", "kən juː seɪ ðæt əˈɡen pliːz", "Możesz powtórzyć?"],
+    ["you", "How do you say that in English?", "haʊ də juː seɪ ðæt ɪn ˈɪŋɡlɪʃ", "Jak to się mówi po angielsku?", "Najprzydatniejsze zdanie, kiedy uczysz się z kimś na co dzień."],
+    ["him", "I miss you.", "aɪ mɪs juː", "Tęsknię za tobą."],
+    ["you", "I love you.", "aɪ lʌv juː", "Kocham cię."],
+  ]},
+];
+
+const SPEAK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const list = document.getElementById("list");
+const steps = document.getElementById("steps");
+let html = "", nav = "";
+STAGES.forEach((st, si) => {
+  const id = "etap" + (si + 1);
+  nav += `<a href="#${id}">${si + 1}. ${esc(st.pl)}</a>`;
+  html += `<section class="stage" id="${id}"><div class="stage-head"><span class="n">${String(si + 1).padStart(2, "0")}</span><h2>${esc(st.en)}</h2><span class="pl">${esc(st.pl)}</span></div>`;
+  html += `<div class="colhead"><span>English</span><span>Polski</span></div>`;
+  st.items.forEach(([who, en, ipa, pl, note]) => {
+    const words = en.split(" "), sounds = ipa.split(" ");
+    const line = words.map((w, i) => `<span class="w"><b>${esc(w)}</b><i>${esc(sounds[i] || "")}</i></span>`).join("");
+    html += `<div class="row" data-who="${who}">
+      <div class="en">
+        <span class="who ${who}">${who === "you" ? "Ty" : "Maciej"}</span>
+        <button type="button" class="en-cover">Powiedz to po angielsku, potem stuknij</button>
+        <div class="line" lang="en-GB">${line}</div>
+        <button type="button" class="say" data-say="${esc(en)}">${SPEAK_ICON}Posłuchaj</button>
+      </div>
+      <div class="pl-cell"><button type="button" class="reveal covered" aria-expanded="false"><span class="hint">Stuknij, żeby odkryć</span><span class="txt" lang="pl">${esc(pl)}${note ? `<span class="note">${esc(note)}</span>` : ""}</span></button></div>
+    </div>`;
+  });
+  html += `</section>`;
+});
+list.innerHTML = html;
+steps.innerHTML = nav;
+
+let mode = "pl";
+function applyMode() {
+  document.querySelectorAll("#mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
+  document.body.classList.toggle("en-hidden", mode === "en");
+  document.querySelectorAll(".row").forEach(r => r.classList.remove("shown"));
+  document.querySelectorAll(".reveal").forEach(b => {
+    const cover = mode === "pl";
+    b.classList.toggle("covered", cover);
+    b.setAttribute("aria-expanded", String(!cover));
+  });
+}
+document.getElementById("mode").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  mode = b.dataset.mode; applyMode();
+});
+// Speech speed is remembered on this device.
+let rate = 0.85;
+try { const r = parseFloat(localStorage.getItem("werka-tts-rate-phrases")); if (r > 0) rate = r; } catch (_) {}
+function applyRate() { document.querySelectorAll("#rate button").forEach(b => b.setAttribute("aria-pressed", String(parseFloat(b.dataset.rate) === rate))); }
+document.getElementById("rate").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  rate = parseFloat(b.dataset.rate); applyRate();
+  try { localStorage.setItem("werka-tts-rate-phrases", String(rate)); } catch (_) {}
+});
+applyRate();
+document.getElementById("who").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#who button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  document.querySelectorAll(".row").forEach(r => { r.hidden = b.dataset.who !== "all" && r.dataset.who !== b.dataset.who; });
+});
+list.addEventListener("click", e => {
+  const rev = e.target.closest(".reveal");
+  if (rev) { const c = rev.classList.toggle("covered"); rev.setAttribute("aria-expanded", String(!c)); return; }
+  const cov = e.target.closest(".en-cover");
+  if (cov) { cov.closest(".row").classList.add("shown"); return; }
+  const say = e.target.closest(".say");
+  if (say) speak(say.dataset.say);
+});
+
+let voice = null;
+function pickVoice() {
+  try {
+    const vs = speechSynthesis.getVoices();
+    voice = vs.find(v => v.lang === "en-GB") || vs.find(v => /^en[-_]GB/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (_) {}
+}
+function speak(text) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-GB"; u.rate = rate;
+    if (voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  } catch (_) {}
+}
+if (!("speechSynthesis" in window)) document.body.classList.add("no-tts");
+else { pickVoice(); try { speechSynthesis.addEventListener("voiceschanged", pickVoice); } catch (_) {} }
+</script>
