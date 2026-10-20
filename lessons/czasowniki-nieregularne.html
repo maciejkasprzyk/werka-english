@@ -133,7 +133,6 @@ details.more summary { cursor: pointer; color: var(--green); font: 600 13px/1.4 
 .tenses { margin-top: 6px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; }
 .t { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 2px 14px; padding: 10px 12px; border-top: 1px solid var(--line); }
 .t:first-child { border-top: 0; }
-.t.main { background: var(--green-soft); }
 .t:first-child { border-radius: 12px 12px 0 0; } .t:last-child { border-radius: 0 0 12px 12px; }
 .tn b { display: block; font-size: 13px; font-weight: 700; }
 .tn small { color: var(--muted); font-size: 12px; }
@@ -233,8 +232,8 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
   </div>
 
 
-  <details class="guide" open>
-    <summary>Kiedy który czas <small>stuknij, żeby zwinąć</small></summary>
+  <details class="guide">
+    <summary>Kiedy który czas <small>stuknij, żeby rozwinąć</small></summary>
     <div class="tense-grid">
       <div class="tc"><h3>Present Simple</h3><p class="when">Coś, co robisz regularnie, albo coś, co jest zawsze prawdą.</p>
         <dl><dt>Budowa</dt><dd>forma 1 (he, she, it + s)</dd><dt>Sygnały</dt><dd lang="en-GB">every day, usually, often, always</dd></dl>
@@ -491,7 +490,7 @@ const form = (cls, word, ipa, star) => `<div class="f ${cls}"><b>${esc(word)}${s
 function moreHTML(v) {
   const t = TENSES[v.base] || [];
   const ex = [t[0], t[1], [v.exEn, v.exPl], t[2], t[3], t[4]];
-  const rows = TENSE_INFO.map(([name, hint], i) => `<div class="t${i === 2 ? " main" : ""}"><div class="tn"><b>${name}</b><small>${hint}</small></div><div class="ts">${ex[i]
+  const rows = TENSE_INFO.map(([name, hint], i) => `<div class="t"><div class="tn"><b>${name}</b><small>${hint}</small></div><div class="ts">${ex[i]
     ? `<span class="ex-en" lang="en-GB">${marked(ex[i][0])}</span><button type="button" class="say" data-say="${esc(plain(ex[i][0]))}" aria-label="Posłuchaj">${SPEAK_ICON}</button><span class="ex-pl">${esc(ex[i][1])}</span>`
     : `<span class="none">Tego czasownika zwykle nie używa się w czasach Continuous.</span>`}</div></div>`).join("");
   return `<details class="more"><summary>Przykłady w 6 czasach</summary><div class="tenses">${rows}</div></details>`;
