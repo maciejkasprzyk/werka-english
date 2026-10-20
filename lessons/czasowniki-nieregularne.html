@@ -143,6 +143,22 @@ details.more summary { cursor: pointer; color: var(--green); font: 600 13px/1.4 
 .ts .none { color: var(--muted); font-style: italic; font-size: 14px; }
 .ts .say { padding: 0 4px; }
 
+details.guide { margin-top: 12px; }
+details.guide > summary { cursor: pointer; font: 800 18px/1.3 var(--f-display); padding: 6px 0; width: fit-content; }
+details.guide > summary small { font: 500 14px var(--f-body); color: var(--muted); margin-left: 6px; }
+.tense-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; margin-top: 8px; }
+.tc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; font-size: 15px; }
+.tc.bonus { border-style: dashed; }
+.tc h3 { font-family: var(--f-display); font-size: 17px; margin: 0; }
+.tc .when { margin: 4px 0 8px; }
+.tc dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 14px; }
+.tc dt { color: var(--muted); }
+.tc dd { margin: 0; }
+.tc .ex1 { margin: 10px 0 0; padding-top: 8px; border-top: 1px solid var(--line); }
+.tc .ex1 .pl { display: block; color: var(--muted); font-size: 14px; }
+.tc mark { background: var(--amber-soft); color: var(--amber); border-radius: 4px; padding: 0 2px; font-weight: 700; }
+.tc .warn { margin: 8px 0 0; font-size: 13px; color: var(--amber); font-weight: 600; }
+
 /* Flashcards */
 .cards { padding-block: 20px; }
 .card { max-width: 560px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px 20px; text-align: center; }
@@ -216,6 +232,35 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
     </div>
   </div>
 
+
+  <details class="guide" open>
+    <summary>Kiedy który czas <small>stuknij, żeby zwinąć</small></summary>
+    <div class="tense-grid">
+      <div class="tc"><h3>Present Simple</h3><p class="when">Coś, co robisz regularnie, albo coś, co jest zawsze prawdą.</p>
+        <dl><dt>Budowa</dt><dd>forma 1 (he, she, it + s)</dd><dt>Sygnały</dt><dd lang="en-GB">every day, usually, often, always</dd></dl>
+        <p class="ex1" lang="en-GB">I <mark>eat</mark> breakfast at seven every day.<span class="pl" lang="pl">Codziennie jem śniadanie o siódmej.</span></p></div>
+      <div class="tc"><h3>Present Continuous</h3><p class="when">Coś, co dzieje się teraz, albo plan na najbliższe dni.</p>
+        <dl><dt>Budowa</dt><dd>am / is / are + -ing</dd><dt>Sygnały</dt><dd lang="en-GB">now, at the moment, tonight</dd></dl>
+        <p class="ex1" lang="en-GB">I <mark>am eating</mark>, can I call you later?<span class="pl" lang="pl">Jem, mogę zadzwonić później?</span></p></div>
+      <div class="tc"><h3>Past Simple</h3><p class="when">Coś, co się skończyło w przeszłości. Wiadomo kiedy: mówisz to wprost albo wynika to z opowieści.</p>
+        <dl><dt>Budowa</dt><dd>forma 2; pytanie: did + forma 1</dd><dt>Sygnały</dt><dd lang="en-GB">yesterday, last week, two days ago, in 2020</dd></dl>
+        <p class="ex1" lang="en-GB">I <mark>ate</mark> sushi yesterday.<span class="pl" lang="pl">Wczoraj jadłam sushi.</span></p></div>
+      <div class="tc"><h3>Past Continuous</h3><p class="when">Coś, co trwało w jakimś momencie w przeszłości. Często przerywa to coś krótszego (w Past Simple).</p>
+        <dl><dt>Budowa</dt><dd>was / were + -ing</dd><dt>Sygnały</dt><dd lang="en-GB">when, while, at 8 pm yesterday</dd></dl>
+        <p class="ex1" lang="en-GB">I <mark>was eating</mark> when you called.<span class="pl" lang="pl">Jadłam, kiedy zadzwoniłeś.</span></p></div>
+      <div class="tc"><h3>Present Perfect</h3><p class="when">Przeszłość połączona z teraz: doświadczenie w życiu (nie mówisz kiedy) albo skutek widoczny teraz.</p>
+        <dl><dt>Budowa</dt><dd>have / has + forma 3</dd><dt>Sygnały</dt><dd lang="en-GB">ever, never, already, just, yet</dd></dl>
+        <p class="ex1" lang="en-GB">I <mark>have</mark> never <mark>eaten</mark> sushi.<span class="pl" lang="pl">Nigdy nie jadłam sushi.</span></p>
+        <p class="warn">Jeśli mówisz kiedy (yesterday, last week), to zawsze Past Simple.</p></div>
+      <div class="tc"><h3>Future Simple</h3><p class="when">Decyzja podjęta w tej chwili, obietnica albo przewidywanie.</p>
+        <dl><dt>Budowa</dt><dd>will + forma 1</dd><dt>Sygnały</dt><dd lang="en-GB">tomorrow, I think, probably</dd></dl>
+        <p class="ex1" lang="en-GB">I'm not hungry now. I <mark>will eat</mark> later.<span class="pl" lang="pl">Teraz nie jestem głodna. Zjem później.</span></p></div>
+      <div class="tc bonus"><h3>Past Perfect <small style="font:600 12px var(--f-body);color:var(--muted)">dodatkowo</small></h3><p class="when">„Przeszłość przed przeszłością”: coś stało się wcześniej niż inna rzecz w przeszłości.</p>
+        <dl><dt>Budowa</dt><dd>had + forma 3</dd><dt>Sygnały</dt><dd lang="en-GB">before, already, by the time</dd></dl>
+        <p class="ex1" lang="en-GB">When I arrived, they <mark>had</mark> already <mark>eaten</mark>.<span class="pl" lang="pl">Kiedy przyszłam, oni już zjedli (zanim przyszłam).</span></p></div>
+    </div>
+  </details>
+
   <div class="bar" role="toolbar" aria-label="Ćwiczenie">
     <div class="seg view" id="view">
       <button type="button" data-view="list" aria-pressed="true">Lista</button>
@@ -273,80 +318,80 @@ const GROUPS = [
   { pl: "Trzy najważniejsze", pattern: "każda forma inna", tip: "Najczęstsze czasowniki w angielskim. Nie pasują do żadnego wzoru, więc po prostu warto znać je na pamięć.", items: [
     ["be", "was / were", "been", "biː", "wɒz / wɜː", "biːn", "być", "I *was* very tired yesterday.", "Wczoraj byłam bardzo zmęczona.", "was dla I, he, she, it; were dla you, we, they."],
     ["go", "went", "gone", "ɡəʊ", "went", "ɡɒn", "iść, jechać", "We *went* to a restaurant on Friday.", "W piątek poszliśmy do restauracji."],
-    ["do", "did", "done", "duː", "dɪd", "dʌn", "robić", "I *did* my homework.", "Zrobiłam zadanie domowe."],
+    ["do", "did", "done", "duː", "dɪd", "dʌn", "robić", "I *did* my homework last night.", "Wczoraj wieczorem zrobiłam zadanie domowe."],
   ]},
   { pl: "Trzy razy to samo", pattern: "A – A – A", tip: "Nic się nie zmienia, więc to łatwe punkty. Że chodzi o przeszłość, poznasz po reszcie zdania, np. yesterday.", items: [
-    ["put", "put", "put", "pʊt", "pʊt", "pʊt", "kłaść, położyć", "I *put* my bag on the chair.", "Położyłam torebkę na krześle."],
-    ["cut", "cut", "cut", "kʌt", "kʌt", "kʌt", "ciąć, kroić", "He *cut* the cake.", "Pokroił tort."],
-    ["cost", "cost", "cost", "kɒst", "kɒst", "kɒst", "kosztować", "The tickets *cost* twenty pounds.", "Bilety kosztowały dwadzieścia funtów."],
-    ["let", "let", "let", "let", "let", "let", "pozwolić", "My boss *let* me go home early.", "Szef pozwolił mi wcześniej wyjść."],
-    ["hit", "hit", "hit", "hɪt", "hɪt", "hɪt", "uderzyć", "I *hit* my head on the door.", "Uderzyłam się głową o drzwi."],
-    ["hurt", "hurt", "hurt", "hɜːt", "hɜːt", "hɜːt", "boleć, zranić", "My back *hurt* all day.", "Cały dzień bolały mnie plecy."],
-    ["shut", "shut", "shut", "ʃʌt", "ʃʌt", "ʃʌt", "zamknąć", "I *shut* the window.", "Zamknęłam okno."],
+    ["put", "put", "put", "pʊt", "pʊt", "pʊt", "kłaść, położyć", "When I came in, I *put* my bag on the chair.", "Kiedy weszłam, położyłam torebkę na krześle."],
+    ["cut", "cut", "cut", "kʌt", "kʌt", "kʌt", "ciąć, kroić", "He *cut* the cake an hour ago.", "Godzinę temu pokroił tort."],
+    ["cost", "cost", "cost", "kɒst", "kɒst", "kɒst", "kosztować", "The tickets *cost* twenty pounds last year.", "W zeszłym roku bilety kosztowały dwadzieścia funtów."],
+    ["let", "let", "let", "let", "let", "let", "pozwolić", "Yesterday my boss *let* me go home early.", "Wczoraj szef pozwolił mi wcześniej wyjść."],
+    ["hit", "hit", "hit", "hɪt", "hɪt", "hɪt", "uderzyć", "This morning I *hit* my head on the door.", "Dziś rano uderzyłam się głową o drzwi."],
+    ["hurt", "hurt", "hurt", "hɜːt", "hɜːt", "hɜːt", "boleć, zranić", "My back *hurt* all day yesterday.", "Wczoraj cały dzień bolały mnie plecy."],
+    ["shut", "shut", "shut", "ʃʌt", "ʃʌt", "ʃʌt", "zamknąć", "I *shut* the window ten minutes ago.", "Dziesięć minut temu zamknęłam okno."],
     ["read", "read", "read", "riːd", "red", "red", "czytać", "I *read* a good book last week.", "W zeszłym tygodniu przeczytałam dobrą książkę.", "Pisze się tak samo, ale formy 2 i 3 czyta się /red/, jak kolor red."],
   ]},
   { pl: "Długie „ii” robi się krótkim „e”", pattern: "A – B – B", tip: "W formie 1 jest długie „ii”, a w formach 2 i 3 krótkie „e”: meet, met, met.", items: [
-    ["meet", "met", "met", "miːt", "met", "met", "spotkać", "I *met* my friend for coffee.", "Spotkałam się z koleżanką na kawę."],
-    ["feel", "felt", "felt", "fiːl", "felt", "felt", "czuć (się)", "I *felt* much better.", "Czułam się dużo lepiej."],
-    ["keep", "kept", "kept", "kiːp", "kept", "kept", "trzymać, zatrzymać", "I *kept* the receipt.", "Zatrzymałam paragon."],
-    ["sleep", "slept", "slept", "sliːp", "slept", "slept", "spać", "I *slept* very well.", "Bardzo dobrze spałam."],
+    ["meet", "met", "met", "miːt", "met", "met", "spotkać", "On Saturday I *met* my friend for coffee.", "W sobotę spotkałam się z koleżanką na kawę."],
+    ["feel", "felt", "felt", "fiːl", "felt", "felt", "czuć (się)", "I *felt* much better the next day.", "Następnego dnia czułam się dużo lepiej."],
+    ["keep", "kept", "kept", "kiːp", "kept", "kept", "trzymać, zatrzymać", "Last time I *kept* the receipt.", "Ostatnim razem zatrzymałam paragon."],
+    ["sleep", "slept", "slept", "sliːp", "slept", "slept", "spać", "I *slept* very well last night.", "Tej nocy bardzo dobrze spałam."],
     ["leave", "left", "left", "liːv", "left", "left", "wyjść, zostawić", "We *left* at ten.", "Wyszliśmy o dziesiątej."],
-    ["mean", "meant", "meant", "miːn", "ment", "ment", "znaczyć, mieć na myśli", "Sorry, I *meant* Tuesday.", "Przepraszam, miałam na myśli wtorek."],
+    ["mean", "meant", "meant", "miːn", "ment", "ment", "znaczyć, mieć na myśli", "Sorry, I *meant* Tuesday, not Thursday.", "Przepraszam, miałam na myśli wtorek, nie czwartek."],
   ]},
   { pl: "Wszystko brzmi „ort”", pattern: "-ought / -aught", tip: "Formy 2 i 3 kończą się na -ought albo -aught i zawsze brzmią tak samo: /ɔːt/. Literę g i h się pomija.", items: [
-    ["buy", "bought", "bought", "baɪ", "bɔːt", "bɔːt", "kupić", "I *bought* a new dress.", "Kupiłam nową sukienkę."],
-    ["bring", "brought", "brought", "brɪŋ", "brɔːt", "brɔːt", "przynieść", "The waiter *brought* the menu.", "Kelner przyniósł kartę."],
-    ["think", "thought", "thought", "θɪŋk", "θɔːt", "θɔːt", "myśleć", "I *thought* it was free.", "Myślałam, że to za darmo."],
-    ["teach", "taught", "taught", "tiːtʃ", "tɔːt", "tɔːt", "uczyć (kogoś)", "My mum *taught* me to cook.", "Mama nauczyła mnie gotować."],
-    ["catch", "caught", "caught", "kætʃ", "kɔːt", "kɔːt", "złapać", "I *caught* the last bus.", "Złapałam ostatni autobus."],
+    ["buy", "bought", "bought", "baɪ", "bɔːt", "bɔːt", "kupić", "I *bought* a new dress last weekend.", "W zeszły weekend kupiłam nową sukienkę."],
+    ["bring", "brought", "brought", "brɪŋ", "brɔːt", "brɔːt", "przynieść", "The waiter *brought* the menu five minutes later.", "Kelner przyniósł kartę pięć minut później."],
+    ["think", "thought", "thought", "θɪŋk", "θɔːt", "θɔːt", "myśleć", "At first I *thought* it was free.", "Na początku myślałam, że to za darmo."],
+    ["teach", "taught", "taught", "tiːtʃ", "tɔːt", "tɔːt", "uczyć (kogoś)", "When I was a child, my mum *taught* me to cook.", "Kiedy byłam dzieckiem, mama nauczyła mnie gotować."],
+    ["catch", "caught", "caught", "kætʃ", "kɔːt", "kɔːt", "złapać", "Last night I *caught* the last bus.", "Wczoraj w nocy złapałam ostatni autobus."],
   ]},
   { pl: "Forma 2 i 3 takie same", pattern: "A – B – B", tip: "Najliczniejsza grupa. Formy 2 i 3 są identyczne, więc z każdego czasownika uczysz się tylko dwóch słów.", items: [
     ["have", "had", "had", "hæv", "hæd", "hæd", "mieć", "We *had* dinner at seven.", "Zjedliśmy kolację o siódmej.", "have dinner, have lunch = zjeść obiad, lunch."],
-    ["make", "made", "made", "meɪk", "meɪd", "meɪd", "robić, zrobić", "I *made* a mistake.", "Popełniłam błąd."],
-    ["say", "said", "said", "seɪ", "sed", "sed", "powiedzieć", "She *said* hello.", "Powiedziała cześć.", "said czyta się /sed/, nie „sejd”."],
-    ["pay", "paid", "paid", "peɪ", "peɪd", "peɪd", "płacić", "I *paid* by card.", "Zapłaciłam kartą."],
-    ["tell", "told", "told", "tel", "təʊld", "təʊld", "powiedzieć (komuś), opowiedzieć", "He *told* me a funny story.", "Opowiedział mi zabawną historię."],
-    ["sell", "sold", "sold", "sel", "səʊld", "səʊld", "sprzedać", "They *sold* their old car.", "Sprzedali swój stary samochód."],
-    ["find", "found", "found", "faɪnd", "faʊnd", "faʊnd", "znaleźć", "I *found* my keys.", "Znalazłam klucze."],
-    ["get", "got", "got", "ɡet", "ɡɒt", "ɡɒt", "dostać, dotrzeć", "I *got* a new phone.", "Dostałam nowy telefon.", "Amerykanie w formie 3 mówią gotten."],
-    ["hear", "heard", "heard", "hɪə", "hɜːd", "hɜːd", "słyszeć", "I *heard* a strange noise.", "Usłyszałam dziwny dźwięk.", "heard brzmi inaczej niż hear: /hɜːd/."],
-    ["send", "sent", "sent", "send", "sent", "sent", "wysłać", "I *sent* you a message.", "Wysłałam ci wiadomość."],
-    ["spend", "spent", "spent", "spend", "spent", "spent", "wydać, spędzić", "We *spent* the weekend in London.", "Spędziliśmy weekend w Londynie."],
-    ["lose", "lost", "lost", "luːz", "lɒst", "lɒst", "zgubić, przegrać", "I *lost* my umbrella.", "Zgubiłam parasol."],
-    ["learn", "learnt", "learnt", "lɜːn", "lɜːnt", "lɜːnt", "uczyć się", "I *learnt* ten new words.", "Nauczyłam się dziesięciu nowych słów.", "Można też powiedzieć learned."],
-    ["sit", "sat", "sat", "sɪt", "sæt", "sæt", "siedzieć, usiąść", "We *sat* by the window.", "Usiedliśmy przy oknie."],
-    ["stand", "stood", "stood", "stænd", "stʊd", "stʊd", "stać", "I *stood* in the queue for an hour.", "Stałam w kolejce godzinę."],
-    ["understand", "understood", "understood", "ˌʌndəˈstænd", "ˌʌndəˈstʊd", "ˌʌndəˈstʊd", "rozumieć", "I *understood* everything!", "Wszystko zrozumiałam!", "Działa jak stand, stood, stood."],
-    ["win", "won", "won", "wɪn", "wʌn", "wʌn", "wygrać", "Our team *won* the match.", "Nasza drużyna wygrała mecz.", "won brzmi tak samo jak one."],
+    ["make", "made", "made", "meɪk", "meɪd", "meɪd", "robić, zrobić", "I *made* a mistake in my test yesterday.", "Wczoraj zrobiłam błąd w teście."],
+    ["say", "said", "said", "seɪ", "sed", "sed", "powiedzieć", "She *said* hello when she came in.", "Powiedziała cześć, kiedy weszła.", "said czyta się /sed/, nie „sejd”."],
+    ["pay", "paid", "paid", "peɪ", "peɪd", "peɪd", "płacić", "At the restaurant last night I *paid* by card.", "Wczoraj w restauracji zapłaciłam kartą."],
+    ["tell", "told", "told", "tel", "təʊld", "təʊld", "powiedzieć (komuś), opowiedzieć", "Yesterday he *told* me a funny story.", "Wczoraj opowiedział mi zabawną historię."],
+    ["sell", "sold", "sold", "sel", "səʊld", "səʊld", "sprzedać", "They *sold* their old car in May.", "W maju sprzedali swój stary samochód."],
+    ["find", "found", "found", "faɪnd", "faʊnd", "faʊnd", "znaleźć", "This morning I *found* my keys under the sofa.", "Dziś rano znalazłam klucze pod kanapą."],
+    ["get", "got", "got", "ɡet", "ɡɒt", "ɡɒt", "dostać, dotrzeć", "I *got* a new phone for my birthday.", "Na urodziny dostałam nowy telefon.", "Amerykanie w formie 3 mówią gotten."],
+    ["hear", "heard", "heard", "hɪə", "hɜːd", "hɜːd", "słyszeć", "I *heard* a strange noise last night.", "Wczoraj w nocy usłyszałam dziwny dźwięk.", "heard brzmi inaczej niż hear: /hɜːd/."],
+    ["send", "sent", "sent", "send", "sent", "sent", "wysłać", "I *sent* you a message an hour ago.", "Godzinę temu wysłałam ci wiadomość."],
+    ["spend", "spent", "spent", "spend", "spent", "spent", "wydać, spędzić", "Last month we *spent* a weekend in London.", "W zeszłym miesiącu spędziliśmy weekend w Londynie."],
+    ["lose", "lost", "lost", "luːz", "lɒst", "lɒst", "zgubić, przegrać", "Yesterday I *lost* my umbrella on the bus.", "Wczoraj zgubiłam parasol w autobusie."],
+    ["learn", "learnt", "learnt", "lɜːn", "lɜːnt", "lɜːnt", "uczyć się", "In yesterday's lesson I *learnt* ten new words.", "Na wczorajszej lekcji nauczyłam się dziesięciu nowych słów.", "Można też powiedzieć learned."],
+    ["sit", "sat", "sat", "sɪt", "sæt", "sæt", "siedzieć, usiąść", "At dinner on Friday we *sat* by the window.", "W piątek na kolacji usiedliśmy przy oknie."],
+    ["stand", "stood", "stood", "stænd", "stʊd", "stʊd", "stać", "Yesterday I *stood* in the queue for an hour.", "Wczoraj stałam w kolejce godzinę."],
+    ["understand", "understood", "understood", "ˌʌndəˈstænd", "ˌʌndəˈstʊd", "ˌʌndəˈstʊd", "rozumieć", "I *understood* the whole film last night!", "Wczoraj wieczorem zrozumiałam cały film!", "Działa jak stand, stood, stood."],
+    ["win", "won", "won", "wɪn", "wʌn", "wʌn", "wygrać", "Our team *won* the match on Sunday.", "W niedzielę nasza drużyna wygrała mecz.", "won brzmi tak samo jak one."],
   ]},
   { pl: "Forma 3 wraca do formy 1", pattern: "A – B – A", tip: "Zmienia się tylko forma 2. Forma 3 jest taka sama jak forma 1.", items: [
-    ["come", "came", "come", "kʌm", "keɪm", "kʌm", "przyjść, przyjechać", "My sister *came* to visit.", "Siostra przyjechała w odwiedziny."],
-    ["become", "became", "become", "bɪˈkʌm", "bɪˈkeɪm", "bɪˈkʌm", "stać się, zostać", "She *became* a doctor.", "Została lekarką."],
-    ["run", "ran", "run", "rʌn", "ræn", "rʌn", "biec", "I *ran* to the station.", "Pobiegłam na stację."],
+    ["come", "came", "come", "kʌm", "keɪm", "kʌm", "przyjść, przyjechać", "My sister *came* to visit last week.", "W zeszłym tygodniu siostra przyjechała w odwiedziny."],
+    ["become", "became", "become", "bɪˈkʌm", "bɪˈkeɪm", "bɪˈkʌm", "stać się, zostać", "She *became* a doctor in 2020.", "Została lekarką w 2020 roku."],
+    ["run", "ran", "run", "rʌn", "ræn", "rʌn", "biec", "This morning I *ran* to the station.", "Dziś rano pobiegłam na stację."],
   ]},
   { pl: "i, potem a, potem u", pattern: "i – a – u", tip: "Zmienia się tylko samogłoska, zawsze w tej samej kolejności. Brzmi jak piosenka: drink, drank, drunk.", items: [
-    ["drink", "drank", "drunk", "drɪŋk", "dræŋk", "drʌŋk", "pić", "We *drank* a bottle of wine.", "Wypiliśmy butelkę wina."],
+    ["drink", "drank", "drunk", "drɪŋk", "dræŋk", "drʌŋk", "pić", "On Saturday we *drank* a bottle of wine.", "W sobotę wypiliśmy butelkę wina."],
     ["begin", "began", "begun", "bɪˈɡɪn", "bɪˈɡæn", "bɪˈɡʌn", "zaczynać", "The film *began* at eight.", "Film zaczął się o ósmej."],
-    ["swim", "swam", "swum", "swɪm", "swæm", "swʌm", "pływać", "We *swam* in the sea.", "Pływaliśmy w morzu."],
-    ["sing", "sang", "sung", "sɪŋ", "sæŋ", "sʌŋ", "śpiewać", "We *sang* karaoke all night.", "Całą noc śpiewaliśmy karaoke."],
-    ["ring", "rang", "rung", "rɪŋ", "ræŋ", "rʌŋ", "dzwonić", "My phone *rang* during the meeting.", "Telefon zadzwonił w trakcie spotkania."],
+    ["swim", "swam", "swum", "swɪm", "swæm", "swʌm", "pływać", "Last summer we *swam* in the sea every day.", "Zeszłego lata codziennie pływaliśmy w morzu."],
+    ["sing", "sang", "sung", "sɪŋ", "sæŋ", "sʌŋ", "śpiewać", "On Friday we *sang* karaoke all night.", "W piątek całą noc śpiewaliśmy karaoke."],
+    ["ring", "rang", "rung", "rɪŋ", "ræŋ", "rʌŋ", "dzwonić", "My phone *rang* during the meeting yesterday.", "Wczoraj telefon zadzwonił w trakcie spotkania."],
   ]},
   { pl: "Forma 3 kończy się na -n", pattern: "A – B – C(n)", tip: "Wszystkie trzy formy są różne, ale forma 3 prawie zawsze kończy się na -n albo -en. To pomaga ją zgadnąć.", items: [
-    ["eat", "ate", "eaten", "iːt", "et", "ˈiːtn", "jeść", "We *ate* pizza for dinner.", "Na kolację zjedliśmy pizzę.", "Brytyjczycy mówią ate jako /et/ albo /eɪt/. Oba są poprawne."],
-    ["take", "took", "taken", "teɪk", "tʊk", "ˈteɪkən", "brać, wziąć", "I *took* a taxi.", "Wzięłam taksówkę."],
-    ["give", "gave", "given", "ɡɪv", "ɡeɪv", "ˈɡɪvn", "dać", "He *gave* me flowers.", "Dał mi kwiaty."],
-    ["see", "saw", "seen", "siː", "sɔː", "siːn", "widzieć", "I *saw* a great film.", "Widziałam świetny film."],
-    ["know", "knew", "known", "nəʊ", "njuː", "nəʊn", "wiedzieć, znać", "I *knew* the answer.", "Znałam odpowiedź.", "k na początku jest nieme."],
-    ["speak", "spoke", "spoken", "spiːk", "spəʊk", "ˈspəʊkən", "mówić", "I *spoke* English at work today!", "Dziś w pracy mówiłam po angielsku!"],
-    ["write", "wrote", "written", "raɪt", "rəʊt", "ˈrɪtn", "pisać", "I *wrote* an email in English.", "Napisałam maila po angielsku.", "w na początku jest nieme."],
-    ["drive", "drove", "driven", "draɪv", "drəʊv", "ˈdrɪvn", "prowadzić (samochód)", "We *drove* to the seaside.", "Pojechaliśmy samochodem nad morze."],
-    ["choose", "chose", "chosen", "tʃuːz", "tʃəʊz", "ˈtʃəʊzn", "wybrać", "I *chose* the fish.", "Wybrałam rybę."],
-    ["forget", "forgot", "forgotten", "fəˈɡet", "fəˈɡɒt", "fəˈɡɒtn", "zapomnieć", "I *forgot* my password.", "Zapomniałam hasła."],
-    ["fly", "flew", "flown", "flaɪ", "fluː", "fləʊn", "lecieć, latać", "We *flew* to Dublin.", "Polecieliśmy do Dublina."],
-    ["wear", "wore", "worn", "weə", "wɔː", "wɔːn", "mieć na sobie, nosić", "I *wore* my red dress.", "Miałam na sobie czerwoną sukienkę."],
-    ["break", "broke", "broken", "breɪk", "brəʊk", "ˈbrəʊkən", "złamać, zepsuć", "I *broke* my phone.", "Zepsułam telefon."],
+    ["eat", "ate", "eaten", "iːt", "et", "ˈiːtn", "jeść", "Yesterday we *ate* pizza for dinner.", "Wczoraj na kolację zjedliśmy pizzę.", "Brytyjczycy mówią ate jako /et/ albo /eɪt/. Oba są poprawne."],
+    ["take", "took", "taken", "teɪk", "tʊk", "ˈteɪkən", "brać, wziąć", "I *took* a taxi home last night.", "Wczoraj wieczorem wróciłam do domu taksówką."],
+    ["give", "gave", "given", "ɡɪv", "ɡeɪv", "ˈɡɪvn", "dać", "He *gave* me flowers on my birthday.", "Na urodziny dał mi kwiaty."],
+    ["see", "saw", "seen", "siː", "sɔː", "siːn", "widzieć", "I *saw* a great film on Sunday.", "W niedzielę widziałam świetny film."],
+    ["know", "knew", "known", "nəʊ", "njuː", "nəʊn", "wiedzieć, znać", "In the quiz last night I *knew* every answer!", "Wczoraj w quizie znałam każdą odpowiedź!", "k na początku jest nieme."],
+    ["speak", "spoke", "spoken", "spiːk", "spəʊk", "ˈspəʊkən", "mówić", "Yesterday I *spoke* English at work!", "Wczoraj w pracy mówiłam po angielsku!"],
+    ["write", "wrote", "written", "raɪt", "rəʊt", "ˈrɪtn", "pisać", "Yesterday I *wrote* an email in English.", "Wczoraj napisałam maila po angielsku.", "w na początku jest nieme."],
+    ["drive", "drove", "driven", "draɪv", "drəʊv", "ˈdrɪvn", "prowadzić (samochód)", "Last weekend we *drove* to the seaside.", "W zeszły weekend pojechaliśmy samochodem nad morze."],
+    ["choose", "chose", "chosen", "tʃuːz", "tʃəʊz", "ˈtʃəʊzn", "wybrać", "At the restaurant last night I *chose* the fish.", "Wczoraj w restauracji wybrałam rybę."],
+    ["forget", "forgot", "forgotten", "fəˈɡet", "fəˈɡɒt", "fəˈɡɒtn", "zapomnieć", "This morning I *forgot* my password.", "Dziś rano zapomniałam hasła."],
+    ["fly", "flew", "flown", "flaɪ", "fluː", "fləʊn", "lecieć, latać", "In March we *flew* to Dublin.", "W marcu polecieliśmy do Dublina."],
+    ["wear", "wore", "worn", "weə", "wɔː", "wɔːn", "mieć na sobie, nosić", "On Saturday I *wore* my red dress.", "W sobotę miałam na sobie czerwoną sukienkę."],
+    ["break", "broke", "broken", "breɪk", "brəʊk", "ˈbrəʊkən", "złamać, zepsuć", "I *broke* my phone last week.", "W zeszłym tygodniu zepsułam telefon."],
     ["wake", "woke", "woken", "weɪk", "wəʊk", "ˈwəʊkən", "budzić (się)", "I *woke* up at six.", "Obudziłam się o szóstej.", "wake up = obudzić się."],
-    ["fall", "fell", "fallen", "fɔːl", "fel", "ˈfɔːlən", "upaść, spaść", "I *fell* asleep on the sofa.", "Zasnęłam na kanapie.", "fall asleep = zasnąć."],
+    ["fall", "fell", "fallen", "fɔːl", "fel", "ˈfɔːlən", "upaść, spaść", "Last night I *fell* asleep on the sofa.", "Wczoraj wieczorem zasnęłam na kanapie.", "fall asleep = zasnąć."],
   ]},
 ];
 // The everyday core to learn first.
@@ -428,10 +473,10 @@ const TENSES = {
 const TENSE_INFO = [
   ["Present Simple", "zwykle, regularnie"],
   ["Present Continuous", "teraz, w tej chwili"],
-  ["Past Simple", "skończone w przeszłości"],
+  ["Past Simple", "skończone, wiadomo kiedy"],
   ["Past Continuous", "trwało w przeszłości"],
-  ["Present Perfect", "have + forma 3"],
-  ["Future Simple", "will + forma 1"],
+  ["Present Perfect", "doświadczenie, skutek teraz"],
+  ["Future Simple", "decyzja, obietnica, przyszłość"],
 ];
 
 const VERBS = GROUPS.flatMap((g, gi) => g.items.map(([base, past, pp, ib, ip, ipp, pl, exEn, exPl, note]) =>
