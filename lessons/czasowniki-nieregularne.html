@@ -104,7 +104,7 @@ section.stage[hidden] { display: none; }
 .m-en .cover { left: 0; }
 .m-forms .verb:not(.open) .f2, .m-forms .verb:not(.open) .f3, .m-en .verb:not(.open) .f { visibility: hidden; }
 .m-forms .verb:not(.open) .cover, .m-en .verb:not(.open) .cover { display: block; }
-.m-forms .verb:not(.open) .ex-en, .m-en .verb:not(.open) .ex-en { display: none; }
+.m-forms .verb:not(.open) > .ex .ex-en, .m-en .verb:not(.open) > .ex .ex-en { display: none; }
 
 .meta { min-width: 0; }
 .reveal { width: 100%; text-align: left; border: 1px dashed transparent; border-radius: 10px; padding: 8px 12px; background: transparent; color: var(--ink); font: 500 17px/1.35 var(--f-body); min-height: 44px; cursor: default; }
@@ -114,7 +114,7 @@ section.stage[hidden] { display: none; }
 .m-pl .verb:not(.plopen) .reveal { background: var(--cover); border-color: var(--line); }
 .m-pl .verb:not(.plopen) .reveal .txt { display: none; }
 .m-pl .verb:not(.plopen) .reveal .hint { display: block; }
-.m-pl .verb:not(.plopen) .ex-pl { visibility: hidden; }
+.m-pl .verb:not(.plopen) > .ex .ex-pl { visibility: hidden; }
 
 .ex { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; font-size: 15px; }
 .ex-en { font-weight: 500; }
@@ -127,6 +127,21 @@ section.stage[hidden] { display: none; }
 .know::before { content: ""; width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid currentColor; display: inline-block; }
 .know[aria-pressed="true"]::before { background: currentColor; box-shadow: inset 0 0 0 2px var(--bg); }
 .no-tts .say { display: none; }
+
+details.more { grid-column: 1 / -1; }
+details.more summary { cursor: pointer; color: var(--green); font: 600 13px/1.4 var(--f-body); padding: 4px 0; width: fit-content; }
+.tenses { margin-top: 6px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; }
+.t { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 2px 14px; padding: 10px 12px; border-top: 1px solid var(--line); }
+.t:first-child { border-top: 0; }
+.t.main { background: var(--green-soft); }
+.t:first-child { border-radius: 12px 12px 0 0; } .t:last-child { border-radius: 0 0 12px 12px; }
+.tn b { display: block; font-size: 13px; font-weight: 700; }
+.tn small { color: var(--muted); font-size: 12px; }
+.ts { display: flex; flex-wrap: wrap; gap: 0 8px; align-items: baseline; font-size: 15px; }
+.ts .ex-en { font-weight: 500; }
+.ts .ex-pl { flex-basis: 100%; color: var(--muted); }
+.ts .none { color: var(--muted); font-style: italic; font-size: 14px; }
+.ts .say { padding: 0 4px; }
 
 /* Flashcards */
 .cards { padding-block: 20px; }
@@ -165,6 +180,8 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
   .stage-head .pattern { margin-left: 0; width: 100%; text-align: left; }
   .ex-tools { margin-left: 0; }
   .progress { margin-left: 0; width: 100%; }
+  .bar { position: static; }
+  .t { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .verb.open .f, .verb.plopen .reveal .txt, .card .revealed { animation: fade .18s ease-out; }
@@ -218,7 +235,14 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
       <button type="button" data-filter="all" aria-pressed="true">Wszystkie</button>
       <button type="button" data-filter="todo" aria-pressed="false">Do nauki</button>
     </div>
-    <button type="button" class="btn list-only" id="reset">Zakryj od nowa</button>
+    <div class="group">
+      <span class="label">Tempo</span>
+      <div class="seg" id="rate">
+        <button type="button" data-rate="0.6" aria-pressed="false">Wolno</button>
+        <button type="button" data-rate="0.8" aria-pressed="true">Normalnie</button>
+        <button type="button" data-rate="1" aria-pressed="false">Szybko</button>
+      </div>
+    </div>
     <span class="progress" id="progress"></span>
   </div>
 
@@ -233,7 +257,8 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
     <h3>Jak ćwiczyć</h3>
     <ul>
       <li>Mów trzy formy na głos, rytmicznie, jak wyliczankę: <i lang="en-GB">go, went, gone</i>. Rytm zostaje w głowie lepiej niż tabelka.</li>
-      <li>W trybie „Zakryj: Formy 2 i 3” powiedz obie formy, zanim stukniesz w szary prostokąt.</li>
+      <li>W trybie „Zakryj: Formy 2 i 3” powiedz obie formy, zanim stukniesz w szary prostokąt. Stuknij tryb jeszcze raz, żeby wszystko znowu zakryć.</li>
+      <li>„Przykłady w 6 czasach” pokazują ten sam czasownik w różnych czasach. Przeczytaj każde zdanie na głos.</li>
       <li>Potem „Zakryj: Angielski”: widzisz polskie znaczenie i mówisz wszystkie trzy formy.</li>
       <li>Fiszki pokazują jeden czasownik naraz. Zaznacz „Umiem”, a czasownik zniknie z „Do nauki”. Postęp zapisuje się na tym telefonie.</li>
       <li>Wieczorem opowiedz w trzech zdaniach, co dziś robiłaś: <i lang="en-GB">I woke up at seven. I went to work. I ate pasta.</i></li>
@@ -327,6 +352,88 @@ const GROUPS = [
 // The everyday core to learn first.
 const STARRED = new Set("be go do have make say get see come take know think give find tell eat drink buy pay leave meet speak understand sleep put feel".split(" "));
 
+// More examples per verb: Present Simple, Present Continuous, Past Continuous, Present Perfect, Future Simple (Past Simple is the main example above).
+// null = the verb is normally not used in continuous tenses.
+const TENSES = {
+  be: [["I *am* from Poland.", "Jestem z Polski."], null, null, ["I *have been* to London twice.", "Byłam w Londynie dwa razy."], ["I *will be* home at six.", "Będę w domu o szóstej."]],
+  go: [["I *go* to work by bus.", "Jeżdżę do pracy autobusem."], ["I *am going* to the shop.", "Idę do sklepu."], ["I *was going* home when it started to rain.", "Szłam do domu, kiedy zaczęło padać."], ["She *has gone* out.", "Wyszła i jeszcze jej nie ma."], ["We *will go* to the cinema tomorrow.", "Jutro pójdziemy do kina."]],
+  do: [["I *do* yoga on Mondays.", "W poniedziałki ćwiczę jogę."], ["What *are you doing*?", "Co robisz?"], ["I *was doing* the dishes when you called.", "Zmywałam naczynia, kiedy zadzwoniłeś."], ["I *have done* the shopping.", "Zrobiłam już zakupy."], ["I *will do* it later.", "Zrobię to później."]],
+
+  put: [["I always *put* my keys here.", "Zawsze kładę tu klucze."], ["I *am putting* the food in the fridge.", "Wkładam jedzenie do lodówki."], ["She *was putting* on her coat.", "Zakładała płaszcz."], ["Where *have you put* my phone?", "Gdzie położyłeś mój telefon?"], ["I *will put* it on the table.", "Położę to na stole."]],
+  cut: [["I *cut* the bread with this knife.", "Kroję chleb tym nożem."], ["He *is cutting* the vegetables.", "Kroi warzywa."], ["I *was cutting* onions, so I was crying.", "Kroiłam cebulę, więc płakałam."], ["I *have cut* my finger!", "Skaleczyłam się w palec!"], ["I *will cut* the cake.", "Pokroję tort."]],
+  cost: [["Coffee *costs* three pounds here.", "Kawa kosztuje tu trzy funty."], null, null, ["This trip *has cost* us a lot of money.", "Ta wycieczka kosztowała nas dużo pieniędzy."], ["It *will cost* about fifty pounds.", "To będzie kosztować około pięćdziesięciu funtów."]],
+  let: [["My parents *let* me use their car.", "Rodzice pozwalają mi jeździć ich samochodem."], ["They *are letting* us leave early today.", "Dziś pozwalają nam wyjść wcześniej."], ["The guard *wasn't letting* anyone in.", "Ochroniarz nikogo nie wpuszczał."], ["She *has* never *let* me drive.", "Nigdy nie pozwoliła mi prowadzić."], ["I *will let* you know.", "Dam ci znać."]],
+  hit: [["He *hits* the ball very hard.", "Bardzo mocno uderza piłkę."], ["The storm *is hitting* the coast now.", "Burza uderza teraz w wybrzeże."], ["The rain *was hitting* the windows all night.", "Deszcz całą noc uderzał w okna."], ["A car *has hit* a tree.", "Samochód uderzył w drzewo."], ["Careful, you *will hit* your head!", "Uważaj, uderzysz się w głowę!"]],
+  hurt: [["My feet *hurt* after work.", "Po pracy bolą mnie stopy."], ["My back *is hurting*.", "Bolą mnie plecy."], ["My tooth *was hurting* all night.", "Ząb bolał mnie całą noc."], ["I *have hurt* my knee.", "Zraniłam się w kolano."], ["It *won't hurt*, I promise.", "Nie będzie bolało, obiecuję."]],
+  shut: [["The shop *shuts* at eight.", "Sklep zamyka się o ósmej."], ["They *are shutting* the restaurant for the winter.", "Zamykają restaurację na zimę."], ["I *was shutting* the door when the phone rang.", "Zamykałam drzwi, kiedy zadzwonił telefon."], ["*Have you shut* the window?", "Zamknąłeś okno?"], ["I *will shut* the door.", "Zamknę drzwi."]],
+  read: [["I *read* before bed.", "Czytam przed snem."], ["I *am reading* a great book.", "Czytam świetną książkę."], ["I *was reading* when you called.", "Czytałam, kiedy zadzwoniłeś."], ["*Have you read* this book?", "Czytałeś tę książkę?"], ["I *will read* it tonight.", "Przeczytam to dziś wieczorem."]],
+
+  meet: [["We *meet* every Friday.", "Spotykamy się w każdy piątek."], ["I *am meeting* Anna tonight.", "Dziś wieczorem spotykam się z Anną."], ["I *was meeting* a client at the time.", "W tym czasie spotykałam się z klientem."], ["*Have we met* before?", "Czy my się już znamy?"], ["I *will meet* you at the station.", "Spotkamy się na stacji."]],
+  feel: [["I *feel* happy today.", "Czuję się dziś szczęśliwa."], ["*Are you feeling* better?", "Czujesz się lepiej?"], ["I *wasn't feeling* well yesterday.", "Wczoraj nie czułam się dobrze."], ["I *have* never *felt* so tired.", "Nigdy nie czułam się tak zmęczona."], ["You *will feel* better tomorrow.", "Jutro poczujesz się lepiej."]],
+  keep: [["I *keep* my passport in a drawer.", "Trzymam paszport w szufladzie."], ["This job *is keeping* me very busy.", "Ta praca bardzo mnie zajmuje."], ["He *was keeping* a secret from me.", "Ukrywał przede mną sekret."], ["I *have kept* all your letters.", "Zachowałam wszystkie twoje listy."], ["I *will keep* it safe.", "Przechowam to w bezpiecznym miejscu."]],
+  sleep: [["I usually *sleep* eight hours.", "Zwykle śpię osiem godzin."], ["Shh, the baby *is sleeping*.", "Ćśś, dziecko śpi."], ["I *was sleeping* when you called.", "Spałam, kiedy zadzwoniłeś."], ["I *haven't slept* well this week.", "W tym tygodniu się nie wysypiam."], ["I *will sleep* on the sofa.", "Będę spać na kanapie."]],
+  leave: [["The train *leaves* at nine.", "Pociąg odjeżdża o dziewiątej."], ["Hurry up, we *are leaving*!", "Pospiesz się, wychodzimy!"], ["I *was leaving* the office when he called.", "Wychodziłam z biura, kiedy zadzwonił."], ["Oh no, I *have left* my phone at home!", "O nie, zostawiłam telefon w domu!"], ["I *will leave* at five.", "Wyjdę o piątej."]],
+  mean: [["What *does* this word *mean*?", "Co znaczy to słowo?"], null, null, ["I *have meant* to call you all week.", "Cały tydzień chciałam do ciebie zadzwonić."], ["That *will mean* more work for us.", "To będzie oznaczać więcej pracy dla nas."]],
+
+  buy: [["I *buy* bread every morning.", "Co rano kupuję chleb."], ["We *are buying* a new flat.", "Kupujemy nowe mieszkanie."], ["I *was buying* a coffee when I saw him.", "Kupowałam kawę, kiedy go zobaczyłam."], ["I *have* just *bought* the tickets!", "Właśnie kupiłam bilety!"], ["I *will buy* some milk on the way home.", "Kupię mleko w drodze do domu."]],
+  bring: [["He always *brings* me flowers.", "Zawsze przynosi mi kwiaty."], ["I *am bringing* a cake to the party.", "Przynoszę ciasto na imprezę."], ["The waiter *was bringing* our food.", "Kelner właśnie niósł nasze jedzenie."], ["*Have you brought* your umbrella?", "Wzięłaś ze sobą parasol?"], ["I *will bring* the wine.", "Przyniosę wino."]],
+  think: [["I *think* it's a good idea.", "Myślę, że to dobry pomysł."], ["I *am thinking* about a new job.", "Myślę o nowej pracy."], ["I *was thinking* about you.", "Myślałam o tobie."], ["I *have* never *thought* about it.", "Nigdy o tym nie myślałam."], ["I *will think* about it.", "Zastanowię się nad tym."]],
+  teach: [["She *teaches* English at a school.", "Uczy angielskiego w szkole."], ["Maciej *is teaching* me English.", "Maciej uczy mnie angielskiego."], ["She *was teaching* a class when I arrived.", "Prowadziła lekcję, kiedy przyszłam."], ["He *has taught* me a lot.", "Wiele mnie nauczył."], ["I *will teach* you how to make pierogi.", "Nauczę cię robić pierogi."]],
+  catch: [["I *catch* the bus at half past seven.", "Łapię autobus o wpół do ósmej."], ["I think I *am catching* a cold.", "Chyba łapie mnie przeziębienie."], ["He *was catching* fish all day.", "Cały dzień łowił ryby."], ["I *have caught* a cold.", "Przeziębiłam się."], ["We *will catch* the next train.", "Złapiemy następny pociąg."]],
+
+  have: [["I *have* breakfast at seven.", "Jem śniadanie o siódmej."], ["We *are having* lunch.", "Jemy lunch."], ["We *were having* dinner when the lights went out.", "Jedliśmy kolację, kiedy zgasło światło."], ["I *have had* a long day.", "Miałam długi dzień."], ["We *will have* a party on Saturday.", "W sobotę zrobimy imprezę."]],
+  make: [["I *make* coffee every morning.", "Co rano robię kawę."], ["I *am making* dinner.", "Robię kolację."], ["She *was making* a cake.", "Piekła ciasto."], ["I *have made* a reservation.", "Zrobiłam rezerwację."], ["I *will make* you a sandwich.", "Zrobię ci kanapkę."]],
+  say: [["He always *says* thank you.", "Zawsze mówi dziękuję."], ["What *are you saying*?", "Co ty mówisz?"], ["Sorry, what *were you saying*?", "Przepraszam, co mówiłeś?"], ["I *have* already *said* sorry.", "Już przeprosiłam."], ["I *won't say* anything.", "Nic nie powiem."]],
+  pay: [["I usually *pay* by card.", "Zwykle płacę kartą."], ["I *am paying* for dinner tonight.", "Dziś ja płacę za kolację."], ["I *was paying* when my phone died.", "Płaciłam, kiedy padł mi telefon."], ["*Have you paid* the bill?", "Zapłaciłeś rachunek?"], ["I *will pay* you back tomorrow.", "Oddam ci jutro."]],
+  tell: [["He *tells* great stories.", "Opowiada świetne historie."], ["I *am telling* you the truth!", "Mówię ci prawdę!"], ["She *was telling* me about her holiday.", "Opowiadała mi o swoich wakacjach."], ["*Have you told* her?", "Powiedziałeś jej?"], ["I *will tell* you later.", "Powiem ci później."]],
+  sell: [["This shop *sells* fresh bread.", "Ten sklep sprzedaje świeży chleb."], ["We *are selling* our car.", "Sprzedajemy samochód."], ["He *was selling* ice cream on the beach.", "Sprzedawał lody na plaży."], ["Sorry, we *have sold* all the tickets.", "Przykro nam, sprzedaliśmy wszystkie bilety."], ["I *will sell* my old bike.", "Sprzedam stary rower."]],
+  find: [["I *find* English films hard to understand.", "Angielskie filmy są dla mnie trudne do zrozumienia."], ["I *am finding* this job really interesting.", "Ta praca naprawdę mnie ciekawi."], ["I *was finding* it hard to sleep.", "Trudno mi było zasnąć."], ["I *have found* a great restaurant!", "Znalazłam świetną restaurację!"], ["Don't worry, we *will find* it.", "Nie martw się, znajdziemy to."]],
+  get: [["I *get* up at seven.", "Wstaję o siódmej."], ["It *is getting* cold.", "Robi się zimno."], ["I *was getting* ready when you arrived.", "Szykowałam się, kiedy przyszedłeś."], ["I *have got* a new job!", "Dostałam nową pracę!"], ["We *will get* there at eight.", "Dotrzemy tam o ósmej."]],
+  hear: [["I *hear* the neighbours every night.", "Co noc słyszę sąsiadów."], null, null, ["*Have you heard* the news?", "Słyszałeś najnowsze wieści?"], ["You *will hear* from us soon.", "Wkrótce się odezwiemy."]],
+  send: [["I *send* my mum photos every day.", "Codziennie wysyłam mamie zdjęcia."], ["I *am sending* you the address now.", "Wysyłam ci teraz adres."], ["I *was sending* emails all morning.", "Cały ranek wysyłałam maile."], ["I *have sent* you the photos.", "Wysłałam ci zdjęcia."], ["I *will send* you a text.", "Napiszę ci SMS-a."]],
+  spend: [["I *spend* a lot of money on clothes.", "Wydaję dużo pieniędzy na ubrania."], ["We *are spending* Christmas with my family.", "Spędzamy święta z moją rodziną."], ["We *were spending* the summer in Spain.", "Spędzaliśmy lato w Hiszpanii."], ["I *have spent* all my money!", "Wydałam wszystkie pieniądze!"], ["We *will spend* a week by the sea.", "Spędzimy tydzień nad morzem."]],
+  lose: [["I always *lose* my keys.", "Zawsze gubię klucze."], ["We *are losing* the match.", "Przegrywamy mecz."], ["They *were losing* two–nil at half-time.", "Do przerwy przegrywali dwa do zera."], ["I *have lost* my wallet!", "Zgubiłam portfel!"], ["You *won't lose* it, don't worry.", "Nie zgubisz tego, nie martw się."]],
+  learn: [["I *learn* five new words every day.", "Codziennie uczę się pięciu nowych słów."], ["I *am learning* English.", "Uczę się angielskiego."], ["I *was learning* to drive at the time.", "Wtedy uczyłam się jeździć samochodem."], ["I *have learnt* a lot this year.", "W tym roku dużo się nauczyłam."], ["You *will learn* fast.", "Szybko się nauczysz."]],
+  sit: [["I always *sit* by the window.", "Zawsze siadam przy oknie."], ["We *are sitting* in a café.", "Siedzimy w kawiarni."], ["I *was sitting* on the bus when he called.", "Siedziałam w autobusie, kiedy zadzwonił."], ["I *have* never *sat* in first class.", "Nigdy nie siedziałam w pierwszej klasie."], ["I *will sit* next to you.", "Usiądę obok ciebie."]],
+  stand: [["I *stand* all day at work.", "W pracy cały dzień stoję."], ["Why *are you standing*? Sit down!", "Czemu stoisz? Usiądź!"], ["We *were standing* at the bus stop.", "Staliśmy na przystanku."], ["She *has* never *stood* on a stage.", "Nigdy nie stała na scenie."], ["I *will stand* here and wait.", "Postoję tu i poczekam."]],
+  understand: [["I *understand* a lot now.", "Teraz dużo rozumiem."], null, null, ["*Have you understood* everything?", "Wszystko zrozumiałaś?"], ["You *will understand* when you see it.", "Zrozumiesz, kiedy to zobaczysz."]],
+  win: [["Our team always *wins*.", "Nasza drużyna zawsze wygrywa."], ["Who *is winning*?", "Kto wygrywa?"], ["We *were winning* until the last minute.", "Wygrywaliśmy do ostatniej minuty."], ["I *have* never *won* anything.", "Nigdy niczego nie wygrałam."], ["You *will win*, I'm sure.", "Na pewno wygrasz."]],
+
+  come: [["She *comes* to work by bike.", "Przyjeżdża do pracy rowerem."], ["I *am coming*!", "Już idę!"], ["I *was coming* home when I saw her.", "Wracałam do domu, kiedy ją zobaczyłam."], ["Spring *has come*.", "Przyszła wiosna."], ["*Will you come* to my party?", "Przyjdziesz na moją imprezę?"]],
+  become: [["Leaves *become* red in autumn.", "Jesienią liście robią się czerwone."], ["Your English *is becoming* really good!", "Twój angielski robi się naprawdę dobry!"], ["It *was becoming* dark.", "Robiło się ciemno."], ["She *has become* my best friend.", "Stała się moją najlepszą przyjaciółką."], ["You *will become* more confident.", "Nabierzesz pewności siebie."]],
+  run: [["I *run* in the park on Sundays.", "W niedziele biegam w parku."], ["Sorry, I *am running* late!", "Przepraszam, spóźnię się!"], ["I *was running* for the bus.", "Biegłam na autobus."], ["I *have* never *run* a marathon.", "Nigdy nie przebiegłam maratonu."], ["I *will run* to the shop.", "Pobiegnę do sklepu."]],
+
+  drink: [["I *drink* coffee every morning.", "Co rano piję kawę."], ["What *are you drinking*?", "Co pijesz?"], ["We *were drinking* tea in the garden.", "Piliśmy herbatę w ogrodzie."], ["I *have* never *drunk* whisky.", "Nigdy nie piłam whisky."], ["I *will drink* water, thanks.", "Napiję się wody, dziękuję."]],
+  begin: [["Work *begins* at nine.", "Praca zaczyna się o dziewiątej."], ["The film *is beginning*!", "Film się zaczyna!"], ["It *was beginning* to rain.", "Zaczynało padać."], ["The lesson *has* already *begun*.", "Lekcja już się zaczęła."], ["The concert *will begin* at eight.", "Koncert zacznie się o ósmej."]],
+  swim: [["I *swim* twice a week.", "Pływam dwa razy w tygodniu."], ["Look, the kids *are swimming*!", "Patrz, dzieci pływają!"], ["We *were swimming* when it started to rain.", "Pływaliśmy, kiedy zaczęło padać."], ["I *have* never *swum* in the ocean.", "Nigdy nie pływałam w oceanie."], ["We *will swim* in the lake tomorrow.", "Jutro popływamy w jeziorze."]],
+  sing: [["She *sings* in a choir.", "Śpiewa w chórze."], ["Who *is singing*?", "Kto śpiewa?"], ["I *was singing* in the shower.", "Śpiewałam pod prysznicem."], ["I *have* never *sung* karaoke.", "Nigdy nie śpiewałam karaoke."], ["I *will sing* for you.", "Zaśpiewam dla ciebie."]],
+  ring: [["The bell *rings* at eight.", "Dzwonek dzwoni o ósmej."], ["Your phone *is ringing*!", "Dzwoni ci telefon!"], ["The phone *was ringing* all morning.", "Telefon dzwonił cały ranek."], ["*Has* anyone *rung*?", "Czy ktoś dzwonił?"], ["I *will ring* you tomorrow.", "Zadzwonię do ciebie jutro."]],
+
+  eat: [["I *eat* a lot of fruit.", "Jem dużo owoców."], ["We *are eating* lunch now.", "Teraz jemy lunch."], ["We *were eating* when he arrived.", "Jedliśmy, kiedy przyszedł."], ["*Have* you ever *eaten* sushi?", "Jadłaś kiedyś sushi?"], ["We *will eat* at home tonight.", "Dziś zjemy w domu."]],
+  take: [["It *takes* twenty minutes to get there.", "Dojazd zajmuje dwadzieścia minut."], ["I *am taking* a photo.", "Robię zdjęcie."], ["I *was taking* a shower when you called.", "Brałam prysznic, kiedy zadzwoniłeś."], ["Someone *has taken* my seat.", "Ktoś zajął moje miejsce."], ["I *will take* the blue one.", "Wezmę ten niebieski."]],
+  give: [["My mum *gives* me good advice.", "Mama daje mi dobre rady."], ["I *am giving* a presentation tomorrow.", "Jutro mam prezentację."], ["He *was giving* me directions.", "Tłumaczył mi drogę."], ["She *has given* me her number.", "Dała mi swój numer."], ["I *will give* you a call.", "Zadzwonię do ciebie."]],
+  see: [["I *see* my parents every weekend.", "Widuję rodziców w każdy weekend."], ["I *am seeing* the doctor tomorrow.", "Jutro idę do lekarza."], null, ["I *have* never *seen* the sea in winter.", "Nigdy nie widziałam morza zimą."], ["I *will see* you tomorrow!", "Do zobaczenia jutro!"]],
+  know: [["I *know* this place.", "Znam to miejsce."], null, null, ["I *have known* her for ten years.", "Znam ją od dziesięciu lat."], ["I *will know* tomorrow.", "Będę wiedzieć jutro."]],
+  speak: [["I *speak* a little English.", "Mówię trochę po angielsku."], ["Sorry, I *am speaking* on the phone.", "Przepraszam, rozmawiam przez telefon."], ["I *was speaking* to my boss.", "Rozmawiałam z szefem."], ["I *have spoken* English all day!", "Cały dzień mówiłam po angielsku!"], ["I *will speak* slowly.", "Będę mówić powoli."]],
+  write: [["I *write* in my diary every evening.", "Co wieczór piszę pamiętnik."], ["I *am writing* an email.", "Piszę maila."], ["She *was writing* a letter.", "Pisała list."], ["I *have written* to him twice.", "Pisałam do niego dwa razy."], ["I *will write* it down.", "Zapiszę to."]],
+  drive: [["He *drives* to work.", "Jeździ do pracy samochodem."], ["Don't call me, I *am driving*.", "Nie dzwoń, prowadzę."], ["I *was driving* when it started to snow.", "Prowadziłam, kiedy zaczął padać śnieg."], ["I *have* never *driven* on the left.", "Nigdy nie jeździłam lewą stroną."], ["I *will drive* you home.", "Odwiozę cię do domu."]],
+  choose: [["I always *choose* the same dish.", "Zawsze wybieram to samo danie."], ["We *are choosing* a hotel.", "Wybieramy hotel."], ["I *was choosing* a dress for the wedding.", "Wybierałam sukienkę na wesele."], ["*Have you chosen*?", "Czy już państwo wybrali?"], ["I *will choose* the dessert.", "Ja wybiorę deser."]],
+  forget: [["I often *forget* names.", "Często zapominam imiona."], ["I *am forgetting* my French.", "Zapominam francuski."], ["I *was* always *forgetting* my keys.", "Ciągle zapominałam kluczy."], ["I *have forgotten* his name.", "Zapomniałam, jak on ma na imię."], ["I *won't forget* it.", "Nie zapomnę tego."]],
+  fly: [["I *fly* home every Christmas.", "Na każde święta lecę do domu."], ["We *are flying* to Rome tomorrow.", "Jutro lecimy do Rzymu."], ["We *were flying* over the Alps.", "Lecieliśmy nad Alpami."], ["I *have* never *flown* business class.", "Nigdy nie leciałam klasą biznes."], ["We *will fly* back on Sunday.", "Wrócimy samolotem w niedzielę."]],
+  wear: [["I *wear* glasses for reading.", "Do czytania noszę okulary."], ["I *am wearing* my new shoes.", "Mam na sobie nowe buty."], ["She *was wearing* a red coat.", "Miała na sobie czerwony płaszcz."], ["I *have* never *worn* this dress.", "Nigdy nie miałam na sobie tej sukienki."], ["I *will wear* my black dress.", "Założę czarną sukienkę."]],
+  break: [["Glass *breaks* easily.", "Szkło łatwo się tłucze."], ["You *are breaking* my heart!", "Łamiesz mi serce!"], ["The waves *were breaking* on the rocks.", "Fale rozbijały się o skały."], ["I *have broken* my glasses.", "Zepsułam okulary."], ["Be careful, you *will break* it!", "Uważaj, zepsujesz to!"]],
+  wake: [["I *wake* up at six every day.", "Codziennie budzę się o szóstej."], ["Shh, the baby *is waking* up.", "Ćśś, dziecko się budzi."], ["I *was* just *waking* up when you called.", "Właśnie się budziłam, kiedy zadzwoniłeś."], ["*Has* he *woken* up yet?", "Czy on już się obudził?"], ["I *will wake* you at seven.", "Obudzę cię o siódmej."]],
+  fall: [["Leaves *fall* in autumn.", "Jesienią liście spadają."], ["Snow *is falling*.", "Pada śnieg."], ["I *was falling* asleep when the phone rang.", "Zasypiałam, kiedy zadzwonił telefon."], ["Prices *have fallen*.", "Ceny spadły."], ["Be careful, you *will fall*!", "Uważaj, spadniesz!"]],
+};
+const TENSE_INFO = [
+  ["Present Simple", "zwykle, regularnie"],
+  ["Present Continuous", "teraz, w tej chwili"],
+  ["Past Simple", "skończone w przeszłości"],
+  ["Past Continuous", "trwało w przeszłości"],
+  ["Present Perfect", "have + forma 3"],
+  ["Future Simple", "will + forma 1"],
+];
+
 const VERBS = GROUPS.flatMap((g, gi) => g.items.map(([base, past, pp, ib, ip, ipp, pl, exEn, exPl, note]) =>
   ({ gi, base, past, pp, ib, ip, ipp, pl, exEn, exPl, note, star: STARRED.has(base) })));
 
@@ -336,6 +443,14 @@ const marked = s => esc(s).replace(/\*(.+?)\*/g, "<mark>$1</mark>");
 const plain = s => s.replace(/\*/g, "");
 const formsText = v => [v.base, v.past.replace(" / ", ", "), v.pp].join(", ");
 const form = (cls, word, ipa, star) => `<div class="f ${cls}"><b>${esc(word)}${star ? '<span class="star" title="Najważniejsze">★</span>' : ""}</b><i>${esc(ipa)}</i></div>`;
+function moreHTML(v) {
+  const t = TENSES[v.base] || [];
+  const ex = [t[0], t[1], [v.exEn, v.exPl], t[2], t[3], t[4]];
+  const rows = TENSE_INFO.map(([name, hint], i) => `<div class="t${i === 2 ? " main" : ""}"><div class="tn"><b>${name}</b><small>${hint}</small></div><div class="ts">${ex[i]
+    ? `<span class="ex-en" lang="en-GB">${marked(ex[i][0])}</span><button type="button" class="say" data-say="${esc(plain(ex[i][0]))}" aria-label="Posłuchaj">${SPEAK_ICON}</button><span class="ex-pl">${esc(ex[i][1])}</span>`
+    : `<span class="none">Tego czasownika zwykle nie używa się w czasach Continuous.</span>`}</div></div>`).join("");
+  return `<details class="more"><summary>Przykłady w 6 czasach</summary><div class="tenses">${rows}</div></details>`;
+}
 const formsHTML = v => form("f1", v.base, v.ib, v.star) + form("f2", v.past, v.ip) + form("f3", v.pp, v.ipp);
 
 // Progress ("Umiem") is per device; storage can be unavailable, so it degrades to this page view only.
@@ -359,6 +474,7 @@ GROUPS.forEach((g, gi) => {
       <div class="ex"><span class="ex-en" lang="en-GB">${marked(v.exEn)}</span><span class="ex-pl">${esc(v.exPl)}</span>
         <span class="ex-tools"><button type="button" class="say" data-say="${esc(formsText(v))}">${SPEAK_ICON}Formy</button><button type="button" class="say" data-say="${esc(plain(v.exEn))}">${SPEAK_ICON}Zdanie</button><button type="button" class="know" aria-pressed="false">Umiem</button></span>
       </div>
+      ${moreHTML(v)}
     </div>`;
   });
   html += `</section>`;
@@ -393,7 +509,16 @@ document.getElementById("mode").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
   mode = b.dataset.mode; applyMode();
 });
-document.getElementById("reset").addEventListener("click", applyMode);
+// Speech speed is remembered on this device; "Normalnie" is the original pace.
+let rate = 0.8;
+try { const r = parseFloat(localStorage.getItem("werka-tts-rate")); if (r > 0) rate = r; } catch (_) {}
+function applyRate() { document.querySelectorAll("#rate button").forEach(b => b.setAttribute("aria-pressed", String(parseFloat(b.dataset.rate) === rate))); }
+document.getElementById("rate").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  rate = parseFloat(b.dataset.rate); applyRate();
+  try { localStorage.setItem("werka-tts-rate", String(rate)); } catch (_) {}
+});
+applyRate();
 document.getElementById("filter").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
   pressOnly(e.currentTarget, b); filter = b.dataset.filter; refreshList();
@@ -447,6 +572,7 @@ function renderCard() {
     ${shown ? `<div class="revealed">
         <div class="ex"><span class="ex-en" lang="en-GB">${marked(v.exEn)}</span><span class="ex-pl">${esc(v.exPl)}</span></div>
         ${v.note ? `<div class="note">${esc(v.note)}</div>` : ""}
+        <div style="margin-top:14px">${moreHTML(v)}</div>
         <div class="card-actions" style="margin-top:12px"><button type="button" class="say" data-say="${esc(formsText(v))}">${SPEAK_ICON}Formy</button><button type="button" class="say" data-say="${esc(plain(v.exEn))}">${SPEAK_ICON}Zdanie</button></div>
         <div class="card-actions"><button type="button" class="big again" data-act="again">Jeszcze nie</button><button type="button" class="big primary" data-act="know">Umiem ✓</button></div>
       </div>`
@@ -484,7 +610,7 @@ function speak(text) {
   try {
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = "en-GB"; u.rate = 0.8;
+    u.lang = "en-GB"; u.rate = rate;
     if (voice) u.voice = voice;
     speechSynthesis.speak(u);
   } catch (_) {}
