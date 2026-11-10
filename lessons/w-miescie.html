@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Zwroty na zakupy, pytanie o drogę, bilety i komunikację miejską, a także aptekę, pocztę i bankomat. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Rozmówca",
+  legend: ["to, co mówisz ty", "to, co możesz usłyszeć od sprzedawcy albo przechodnia"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Wskazówki dojścia („turn left”, „go straight on”) poćwiczcie w ruchu: Maciek prowadzi cię po mieszkaniu albo osiedlu tylko po angielsku.",
+    "W prawdziwym sklepie spróbuj chociaż jednego zdania po angielsku, np. „I'm just looking, thanks”.",
+  ],
+  stages: [
+  { en: "In a shop", pl: "W sklepie", items: [
+    ["other", "Are you looking for anything?", "ɑː juː ˈlʊkɪŋ fər ˈeniθɪŋ", "Czegoś pani szuka?"],
+    ["you", "I'm just looking, thanks.", "aɪm dʒʌst ˈlʊkɪŋ θæŋks", "Tylko się rozglądam, dziękuję."],
+    ["you", "Excuse me, where can I find the milk?", "ɪkˈskjuːz miː weə kən aɪ faɪnd ðə mɪlk", "Przepraszam, gdzie znajdę mleko?"],
+    ["you", "Do you have this in a smaller size?", "də juː hæv ðɪs ɪn ə ˈsmɔːlə saɪz", "Czy jest to w mniejszym rozmiarze?"],
+    ["you", "Can I try it on?", "kən aɪ traɪ ɪt ɒn", "Mogę przymierzyć?"],
+    ["you", "How much is this?", "haʊ mʌtʃ ɪz ðɪs", "Ile to kosztuje?"],
+    ["you", "I'll take it.", "aɪl teɪk ɪt", "Wezmę to."],
+    ["other", "Would you like a bag?", "wʊd juː laɪk ə bæɡ", "Potrzebuje pani torbę?"],
+    ["you", "No, thanks. I've got one.", "nəʊ θæŋks aɪv ɡɒt wʌn", "Nie, dziękuję. Mam swoją."],
+    ["you", "I'd like to return this.", "aɪd laɪk tə rɪˈtɜːn ðɪs", "Chciałabym to zwrócić."],
+  ]},
+  { en: "Asking the way", pl: "Pytanie o drogę", items: [
+    ["you", "Excuse me, how do I get to the station?", "ɪkˈskjuːz miː haʊ də aɪ ɡet tə ðə ˈsteɪʃn", "Przepraszam, jak dojść na dworzec?", "Excuse me, żeby zaczepić obcą osobę. Sorry, kiedy przepraszasz."],
+    ["you", "Is it far from here?", "ɪz ɪt fɑː frəm hɪə", "Czy to daleko stąd?"],
+    ["you", "Is there a pharmacy near here?", "ɪz ðeər ə ˈfɑːməsi nɪə hɪə", "Czy jest tu w pobliżu apteka?"],
+    ["other", "Go straight on.", "ɡəʊ streɪt ɒn", "Idź prosto."],
+    ["other", "Turn left at the traffic lights.", "tɜːn left ət ðə ˈtræfɪk laɪts", "Na światłach skręć w lewo."],
+    ["other", "Take the second right.", "teɪk ðə ˈsekənd raɪt", "Skręć w drugą w prawo."],
+    ["other", "It's on your left.", "ɪts ɒn jɔː left", "Jest po lewej stronie."],
+    ["other", "It's about five minutes on foot.", "ɪts əˈbaʊt faɪv ˈmɪnɪts ɒn fʊt", "To jakieś pięć minut pieszo."],
+    ["you", "Could you show me on the map?", "kʊd juː ʃəʊ miː ɒn ðə mæp", "Może mi pan pokazać na mapie?"],
+  ]},
+  { en: "Buses and trains", pl: "Autobus i pociąg", items: [
+    ["you", "Which bus goes to the city centre?", "wɪtʃ bʌs ɡəʊz tə ðə ˈsɪti ˈsentə", "Który autobus jedzie do centrum?"],
+    ["you", "A return ticket to London, please.", "ə rɪˈtɜːn ˈtɪkɪt tə ˈlʌndən pliːz", "Bilet w obie strony do Londynu, poproszę.", "single = w jedną stronę, return = w obie strony."],
+    ["you", "What time is the next train?", "wɒt taɪm ɪz ðə nekst treɪn", "O której jest następny pociąg?"],
+    ["you", "Which platform does it leave from?", "wɪtʃ ˈplætfɔːm dʌz ɪt liːv frɒm", "Z którego peronu odjeżdża?"],
+    ["you", "Does this bus stop at the hospital?", "dʌz ðɪs bʌs stɒp ət ðə ˈhɒspɪtl", "Czy ten autobus zatrzymuje się przy szpitalu?"],
+    ["you", "Could you tell me when to get off?", "kʊd juː tel miː wen tə ɡet ɒf", "Powie mi pan, kiedy mam wysiąść?"],
+    ["you", "Is this seat free?", "ɪz ðɪs siːt friː", "Czy to miejsce jest wolne?"],
+    ["other", "The train is delayed.", "ðə treɪn ɪz dɪˈleɪd", "Pociąg jest opóźniony."],
+  ]},
+  { en: "Pharmacy, post office, bank", pl: "Apteka, poczta, bankomat", items: [
+    ["you", "I need something for a cold.", "aɪ niːd ˈsʌmθɪŋ fər ə kəʊld", "Potrzebuję czegoś na przeziębienie."],
+    ["you", "I'd like to send this parcel to Poland.", "aɪd laɪk tə send ðɪs ˈpɑːsl tə ˈpəʊlənd", "Chciałabym wysłać tę paczkę do Polski."],
+    ["you", "Where is the nearest cash machine?", "weər ɪz ðə ˈnɪərɪst kæʃ məˈʃiːn", "Gdzie jest najbliższy bankomat?"],
+    ["you", "What time do you close?", "wɒt taɪm də juː kləʊz", "O której zamykacie?"],
+  ]},
+],
+});
+</script>

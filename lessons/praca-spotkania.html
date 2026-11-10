@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Zwroty do pracy w angielskojęzycznym zespole: początek spotkania online, zabieranie głosu, dopytywanie, mówienie o postępach i krótkie, typowe zdania do maili. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Kolega z pracy",
+  legend: ["to, co mówisz ty", "to, co możesz usłyszeć w pracy"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Najważniejsze zdanie tej lekcji to „I'll check and get back to you”. Nie musisz znać odpowiedzi od razu, nikt tego nie oczekuje.",
+    "Ćwiczcie krótkie „spotkanie”: Maciek prowadzi, a ty musisz raz zabrać głos, zadać jedno pytanie i powiedzieć, jak idzie twoje zadanie.",
+  ],
+  stages: [
+  { en: "Starting a meeting", pl: "Na początku spotkania", items: [
+    ["other", "Shall we get started?", "ʃəl wiː ɡet ˈstɑːtɪd", "Zaczynamy?"],
+    ["you", "Sorry I'm late.", "ˈsɒri aɪm leɪt", "Przepraszam za spóźnienie."],
+    ["you", "Can everyone hear me?", "kən ˈevriwʌn hɪə miː", "Wszyscy mnie słyszą?"],
+    ["you", "Can you see my screen?", "kən juː siː maɪ skriːn", "Widzicie mój ekran?"],
+    ["you", "Sorry, I was on mute.", "ˈsɒri aɪ wəz ɒn mjuːt", "Przepraszam, miałam wyciszony mikrofon."],
+  ]},
+  { en: "Speaking up", pl: "Zabieranie głosu", items: [
+    ["you", "Can I add something?", "kən aɪ æd ˈsʌmθɪŋ", "Mogę coś dodać?"],
+    ["you", "I have a quick question.", "aɪ hæv ə kwɪk ˈkwestʃən", "Mam krótkie pytanie."],
+    ["you", "Sorry, can I just say something?", "ˈsɒri kən aɪ dʒʌst seɪ ˈsʌmθɪŋ", "Przepraszam, mogę coś powiedzieć?"],
+    ["you", "Sorry, go ahead.", "ˈsɒri ɡəʊ əˈhed", "Przepraszam, mów dalej.", "Kiedy zaczniecie mówić w tym samym momencie."],
+    ["you", "Just to clarify, the deadline is Friday?", "dʒʌst tə ˈklærəfaɪ ðə ˈdedlaɪn ɪz ˈfraɪdeɪ", "Dla jasności: termin jest w piątek?"],
+    ["you", "I'm not sure. I need to check.", "aɪm nɒt ʃɔː aɪ niːd tə tʃek", "Nie jestem pewna. Muszę sprawdzić."],
+    ["you", "I'll check and get back to you.", "aɪl tʃek ənd ɡet bæk tə juː", "Sprawdzę i dam znać.", "Ratunek, kiedy nie znasz odpowiedzi od razu."],
+  ]},
+  { en: "Tasks and progress", pl: "Zadania i postępy", items: [
+    ["other", "How's it going with the report?", "haʊz ɪt ˈɡəʊɪŋ wɪð ðə rɪˈpɔːt", "Jak idzie raport?"],
+    ["you", "It's almost finished.", "ɪts ˈɔːlməʊst ˈfɪnɪʃt", "Jest prawie skończony."],
+    ["you", "I'm still working on it.", "aɪm stɪl ˈwɜːkɪŋ ɒn ɪt", "Wciąż nad nim pracuję."],
+    ["you", "I'll send it by the end of the day.", "aɪl send ɪt baɪ ði end əv ðə deɪ", "Wyślę go do końca dnia."],
+    ["you", "I need a bit more time.", "aɪ niːd ə bɪt mɔː taɪm", "Potrzebuję trochę więcej czasu."],
+    ["you", "I can take care of that.", "aɪ kən teɪk keər əv ðæt", "Mogę się tym zająć."],
+    ["you", "Who's responsible for this?", "huːz rɪˈspɒnsəbl fə ðɪs", "Kto za to odpowiada?"],
+  ]},
+  { en: "End of the meeting", pl: "Koniec spotkania", items: [
+    ["other", "Any questions?", "ˈeni ˈkwestʃənz", "Jakieś pytania?"],
+    ["you", "No, that's all clear. Thanks.", "nəʊ ðæts ɔːl klɪə θæŋks", "Nie, wszystko jasne. Dzięki."],
+    ["you", "So, what are the next steps?", "səʊ wɒt ə ðə nekst steps", "To jakie są następne kroki?"],
+    ["you", "Can you send me the notes?", "kən juː send miː ðə nəʊts", "Możesz mi wysłać notatki?"],
+  ]},
+  { en: "Emails", pl: "Maile", items: [
+    ["you", "Hi Anna, hope you're well.", "haɪ ˈænə həʊp jɔː wel", "Cześć Anno, mam nadzieję, że wszystko u ciebie dobrze.", "Typowy, luźny początek maila w pracy."],
+    ["you", "Thanks for your email.", "θæŋks fə jɔːr ˈiːmeɪl", "Dziękuję za maila."],
+    ["you", "Please find the file attached.", "pliːz faɪnd ðə faɪl əˈtætʃt", "W załączniku przesyłam plik."],
+    ["you", "Just a quick reminder about tomorrow's meeting.", "dʒʌst ə kwɪk rɪˈmaɪndə əˈbaʊt təˈmɒrəʊz ˈmiːtɪŋ", "Krótkie przypomnienie o jutrzejszym spotkaniu."],
+    ["you", "Could you let me know by Friday?", "kʊd juː let miː nəʊ baɪ ˈfraɪdeɪ", "Czy możesz dać mi znać do piątku?"],
+    ["you", "Let me know if you have any questions.", "let miː nəʊ ɪf juː hæv ˈeni ˈkwestʃənz", "Daj znać, jeśli masz pytania."],
+    ["you", "Best regards, Weronika", "best rɪˈɡɑːdz ˌverəˈniːkə", "Pozdrawiam, Weronika", "Standardowe zakończenie maila. Luźniej: Thanks, albo Best,"],
+  ]},
+],
+});
+</script>

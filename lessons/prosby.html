@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Jak grzecznie o coś poprosić, zapytać, czy można, powiedzieć, że coś nie działa, zaproponować pomoc i podziękować. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Rozmówca",
+  legend: ["to, co mówisz ty", "to, co możesz usłyszeć od kogoś"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Zapamiętaj trzy początki: <b>Could you…?</b> (czy mógłbyś), <b>Can I…?</b> (czy mogę), <b>Would you mind…?</b> (czy nie miałbyś nic przeciwko). Z nimi zbudujesz prawie każdą prośbę.",
+    "Przez jeden dzień proś Maćka o wszystko po angielsku, nawet o podanie wody.",
+  ],
+  stages: [
+  { en: "Polite requests", pl: "Grzeczne prośby", items: [
+    ["you", "Could you help me, please?", "kʊd juː help miː pliːz", "Mógłbyś mi pomóc?", "Could you…? jest grzeczniejsze niż Can you…?."],
+    ["you", "Could you open the window, please?", "kʊd juː ˈəʊpən ðə ˈwɪndəʊ pliːz", "Mógłbyś otworzyć okno?"],
+    ["you", "Would you mind closing the door?", "wʊd juː maɪnd ˈkləʊzɪŋ ðə dɔː", "Czy mógłbyś zamknąć drzwi?", "Po Would you mind czasownik ma końcówkę -ing."],
+    ["you", "Can I ask you something?", "kən aɪ ɑːsk juː ˈsʌmθɪŋ", "Mogę cię o coś zapytać?"],
+    ["you", "Could you do me a favour?", "kʊd juː duː miː ə ˈfeɪvə", "Możesz mi wyświadczyć przysługę?"],
+    ["other", "Sure, what is it?", "ʃɔː wɒt ɪz ɪt", "Jasne, o co chodzi?"],
+  ]},
+  { en: "Asking for permission", pl: "Pytanie o pozwolenie", items: [
+    ["you", "Can I sit here?", "kən aɪ sɪt hɪə", "Mogę tu usiąść?"],
+    ["you", "Is it OK if I leave early today?", "ɪz ɪt əʊˈkeɪ ɪf aɪ liːv ˈɜːli təˈdeɪ", "Czy mogę dziś wyjść wcześniej?"],
+    ["you", "Do you mind if I join you?", "də juː maɪnd ɪf aɪ dʒɔɪn juː", "Mogę się do was przyłączyć?"],
+    ["other", "No, not at all. Go ahead.", "nəʊ nɒt ət ɔːl ɡəʊ əˈhed", "Nie, skądże. Proszę bardzo.", "Uwaga: na Do you mind…? odpowiedź „no” znaczy „nie mam nic przeciwko”, czyli zgodę."],
+    ["you", "Can I borrow your pen?", "kən aɪ ˈbɒrəʊ jɔː pen", "Mogę pożyczyć twój długopis?"],
+    ["you", "Can I use your phone charger?", "kən aɪ juːz jɔː fəʊn ˈtʃɑːdʒə", "Mogę skorzystać z twojej ładowarki?"],
+  ]},
+  { en: "When something goes wrong", pl: "Kiedy coś nie działa", items: [
+    ["you", "I have a problem.", "aɪ hæv ə ˈprɒbləm", "Mam problem."],
+    ["you", "It doesn't work.", "ɪt ˈdʌznt wɜːk", "To nie działa."],
+    ["you", "I can't find my ticket.", "aɪ kɑːnt faɪnd maɪ ˈtɪkɪt", "Nie mogę znaleźć biletu."],
+    ["you", "I'm not sure what to do.", "aɪm nɒt ʃɔː wɒt tə duː", "Nie wiem, co mam zrobić."],
+    ["you", "Could you show me how it works?", "kʊd juː ʃəʊ miː haʊ ɪt wɜːks", "Możesz mi pokazać, jak to działa?"],
+    ["you", "I think there's a mistake.", "aɪ θɪŋk ðeəz ə mɪˈsteɪk", "Chyba jest tu błąd."],
+    ["you", "I need some help with this form.", "aɪ niːd səm help wɪð ðɪs fɔːm", "Potrzebuję pomocy z tym formularzem."],
+  ]},
+  { en: "Offering help", pl: "Oferowanie pomocy", items: [
+    ["you", "Can I help you?", "kən aɪ help juː", "Mogę ci pomóc?"],
+    ["you", "Do you need a hand?", "də juː niːd ə hænd", "Pomóc ci?", "a hand = ręka, a tutaj: pomoc."],
+    ["you", "Let me help you with that.", "let miː help juː wɪð ðæt", "Pozwól, że ci z tym pomogę."],
+    ["you", "Shall I carry it?", "ʃəl aɪ ˈkæri ɪt", "Mam to ponieść?"],
+    ["other", "Thanks, that's very kind of you.", "θæŋks ðæts ˈveri kaɪnd əv juː", "Dzięki, to bardzo miłe z twojej strony."],
+    ["other", "It's OK, I can manage.", "ɪts əʊˈkeɪ aɪ kən ˈmænɪdʒ", "W porządku, poradzę sobie."],
+  ]},
+  { en: "Saying thank you", pl: "Dziękowanie", items: [
+    ["you", "Thanks a lot!", "θæŋks ə lɒt", "Wielkie dzięki!"],
+    ["you", "Thank you so much for your help.", "θæŋk juː səʊ mʌtʃ fə jɔː help", "Bardzo dziękuję za pomoc."],
+    ["you", "I really appreciate it.", "aɪ ˈrɪəli əˈpriːʃieɪt ɪt", "Naprawdę to doceniam."],
+    ["other", "You're welcome.", "jɔː ˈwelkəm", "Nie ma za co."],
+    ["other", "No problem at all.", "nəʊ ˈprɒbləm ət ɔːl", "Żaden problem."],
+    ["you", "Sorry to bother you.", "ˈsɒri tə ˈbɒðə juː", "Przepraszam, że przeszkadzam."],
+  ]},
+],
+});
+</script>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Zwroty na rozmowę o pracę i każdą sytuację, w której trzeba się przedstawić zawodowo: kim jesteś, co robiłaś, co umiesz i dlaczego chcesz tę pracę. Przykłady są o tobie: tir, psychologia w Gdańsku, Olsztyn. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Rekruter",
+  legend: ["to, co mówisz ty", "to, o co mogą zapytać na rozmowie"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Z pierwszych dwóch części ułóż krótką przemowę o sobie (skąd jesteś, co robiłaś, co studiowałaś) i naucz się jej na pamięć.",
+    "Zróbcie próbną rozmowę o pracę: Maciek zadaje pytania rekrutera, a ty odpowiadasz pełnymi zdaniami. Za drugim razem będzie dużo łatwiej.",
+  ],
+  stages: [
+  { en: "About you", pl: "Kilka słów o sobie", items: [
+    ["other", "Tell me a bit about yourself.", "tel miː ə bɪt əˈbaʊt jɔːˈself", "Proszę powiedzieć coś o sobie."],
+    ["you", "I'm from Poland. I live in Olsztyn.", "aɪm frəm ˈpəʊlənd aɪ lɪv ɪn ˈɒlʃtɪn", "Jestem z Polski. Mieszkam w Olsztynie."],
+    ["you", "I'm a hard-working person.", "aɪm ə ˌhɑːdˈwɜːkɪŋ ˈpɜːsn", "Jestem pracowitą osobą."],
+    ["you", "I enjoy working with people.", "aɪ ɪnˈdʒɔɪ ˈwɜːkɪŋ wɪð ˈpiːpl", "Lubię pracować z ludźmi."],
+    ["you", "I'm good at organising things.", "aɪm ɡʊd ət ˈɔːɡənaɪzɪŋ θɪŋz", "Dobrze organizuję różne sprawy."],
+    ["you", "I learn new things quickly.", "aɪ lɜːn njuː θɪŋz ˈkwɪkli", "Szybko się uczę."],
+  ]},
+  { en: "Experience", pl: "Doświadczenie", items: [
+    ["other", "What did you do in your last job?", "wɒt dɪd juː duː ɪn jɔː lɑːst dʒɒb", "Czym się pani zajmowała w poprzedniej pracy?"],
+    ["you", "I worked as a lorry driver for three years.", "aɪ wɜːkt əz ə ˈlɒri ˈdraɪvə fə θriː jɪəz", "Przez trzy lata pracowałam jako kierowca tira.", "Pamiętaj o a/an przed zawodem: a driver, an engineer."],
+    ["you", "I've got a lorry driving licence.", "aɪv ɡɒt ə ˈlɒri ˈdraɪvɪŋ ˈlaɪsns", "Mam prawo jazdy na ciężarówki."],
+    ["you", "I'm used to long hours and hard work.", "aɪm juːst tə lɒŋ ˈaʊəz ənd hɑːd wɜːk", "Jestem przyzwyczajona do długich godzin i ciężkiej pracy."],
+    ["you", "I studied psychology at a university in Gdańsk.", "aɪ ˈstʌdid saɪˈkɒlədʒi ət ə ˌjuːnɪˈvɜːsəti ɪn ɡəˈdænsk", "Studiowałam psychologię na uczelni w Gdańsku."],
+    ["you", "Psychology helps me understand people.", "saɪˈkɒlədʒi helps miː ˌʌndəˈstænd ˈpiːpl", "Psychologia pomaga mi rozumieć ludzi."],
+  ]},
+  { en: "Skills and English", pl: "Umiejętności i angielski", items: [
+    ["other", "How good is your English?", "haʊ ɡʊd ɪz jɔːr ˈɪŋɡlɪʃ", "Jak dobrze zna pani angielski?"],
+    ["you", "I can communicate well, and I'm improving every day.", "aɪ kən kəˈmjuːnɪkeɪt wel ənd aɪm ɪmˈpruːvɪŋ ˈevri deɪ", "Dobrze się komunikuję i codziennie się poprawiam."],
+    ["you", "I'm taking English lessons.", "aɪm ˈteɪkɪŋ ˈɪŋɡlɪʃ ˈlesnz", "Chodzę na lekcje angielskiego."],
+    ["you", "I speak Polish and English.", "aɪ spiːk ˈpəʊlɪʃ ənd ˈɪŋɡlɪʃ", "Mówię po polsku i po angielsku."],
+    ["you", "I'm good with computers.", "aɪm ɡʊd wɪð kəmˈpjuːtəz", "Dobrze radzę sobie z komputerem."],
+    ["you", "I work well in a team.", "aɪ wɜːk wel ɪn ə tiːm", "Dobrze pracuję w zespole."],
+  ]},
+  { en: "Why this job?", pl: "Dlaczego ta praca", items: [
+    ["other", "Why do you want this job?", "waɪ də juː wɒnt ðɪs dʒɒb", "Dlaczego chce pani tę pracę?"],
+    ["you", "I'm looking for a new challenge.", "aɪm ˈlʊkɪŋ fər ə njuː ˈtʃælɪndʒ", "Szukam nowego wyzwania."],
+    ["you", "I'd like to use my English every day.", "aɪd laɪk tə juːz maɪ ˈɪŋɡlɪʃ ˈevri deɪ", "Chciałabym używać angielskiego na co dzień."],
+    ["you", "I want to develop my career.", "aɪ wɒnt tə dɪˈveləp maɪ kəˈrɪə", "Chcę rozwijać swoją karierę."],
+    ["other", "What are your strengths?", "wɒt ə jɔː streŋθs", "Jakie są pani mocne strony?"],
+    ["you", "I'm reliable and well organised.", "aɪm rɪˈlaɪəbl ənd wel ˈɔːɡənaɪzd", "Jestem solidna i dobrze zorganizowana."],
+    ["other", "What's your biggest weakness?", "wɒts jɔː ˈbɪɡɪst ˈwiːknəs", "Jaka jest pani największa słabość?"],
+    ["you", "Sometimes I'm a bit shy, but I'm working on it.", "ˈsʌmtaɪmz aɪm ə bɪt ʃaɪ bət aɪm ˈwɜːkɪŋ ɒn ɪt", "Czasem jestem trochę nieśmiała, ale nad tym pracuję.", "Dobra odpowiedź: prawdziwa słabość i to, co z nią robisz."],
+  ]},
+  { en: "At the end", pl: "Na koniec rozmowy", items: [
+    ["other", "Do you have any questions for us?", "də juː hæv ˈeni ˈkwestʃənz fər ʌs", "Czy ma pani do nas pytania?"],
+    ["you", "What would a typical day look like?", "wɒt wʊd ə ˈtɪpɪkl deɪ lʊk laɪk", "Jak wyglądałby typowy dzień?"],
+    ["you", "When can I expect to hear from you?", "wen kən aɪ ɪkˈspekt tə hɪə frəm juː", "Kiedy mogę spodziewać się odpowiedzi?"],
+    ["you", "Thank you for your time.", "θæŋk juː fə jɔː taɪm", "Dziękuję za poświęcony czas."],
+  ]},
+],
+});
+</script>
