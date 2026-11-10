@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Zwroty na pierwsze minuty z nową osobą: przedstawienie się, pytania o pochodzenie, pracę i czas wolny, rozmowa o pogodzie i wymiana numerów. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Rozmówca",
+  legend: ["to, co mówisz ty", "to, co możesz usłyszeć od kogoś"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Przygotuj sobie trzy zdania o sobie (skąd jesteś, czym się zajmujesz, co lubisz) i powtarzaj je, aż będą wychodzić same.",
+    "Ćwiczcie scenkę: Maciek gra nową osobę na imprezie i zadaje pytania z tej lekcji.",
+  ],
+  stages: [
+  { en: "Saying hello", pl: "Powitanie", items: [
+    ["other", "Hi, I'm Tom. Nice to meet you.", "haɪ aɪm tɒm naɪs tə miːt juː", "Cześć, jestem Tom. Miło cię poznać."],
+    ["you", "Nice to meet you too. I'm Weronika.", "naɪs tə miːt juː tuː aɪm ˌverəˈniːkə", "Mnie też miło. Jestem Weronika."],
+    ["you", "Please call me Werka.", "pliːz kɔːl miː ˈverkə", "Mów mi Werka."],
+    ["other", "How are you doing?", "haʊ ə juː ˈduːɪŋ", "Jak leci?"],
+    ["you", "Good, thanks. How about you?", "ɡʊd θæŋks haʊ əˈbaʊt juː", "Dobrze, dzięki. A u ciebie?"],
+    ["other", "Sorry, what was your name again?", "ˈsɒri wɒt wɒz jɔː neɪm əˈɡen", "Przepraszam, jak miałaś na imię?", "Zupełnie normalne pytanie. Ty też możesz tak zapytać."],
+    ["you", "Have we met before?", "həv wiː met bɪˈfɔː", "Czy my się już znamy?"],
+  ]},
+  { en: "Where are you from?", pl: "Skąd jesteś", items: [
+    ["other", "Where are you from?", "weər ə juː frɒm", "Skąd jesteś?"],
+    ["you", "I'm from Poland.", "aɪm frəm ˈpəʊlənd", "Jestem z Polski."],
+    ["you", "Have you ever been to Poland?", "həv juː ˈevə biːn tə ˈpəʊlənd", "Byłeś kiedyś w Polsce?"],
+    ["other", "How long have you lived here?", "haʊ lɒŋ həv juː lɪvd hɪə", "Jak długo tu mieszkasz?"],
+    ["you", "For about two years.", "fər əˈbaʊt tuː jɪəz", "Od mniej więcej dwóch lat."],
+    ["you", "I've just moved here.", "aɪv dʒʌst muːvd hɪə", "Dopiero co się tu przeprowadziłam."],
+    ["other", "Your English is really good!", "jɔːr ˈɪŋɡlɪʃ ɪz ˈrɪəli ɡʊd", "Świetnie mówisz po angielsku!"],
+    ["you", "Thank you! I'm working on it.", "θæŋk juː aɪm ˈwɜːkɪŋ ɒn ɪt", "Dziękuję! Pracuję nad tym.", "Na komplement po prostu podziękuj, nie zaprzeczaj."],
+  ]},
+  { en: "What do you do?", pl: "Czym się zajmujesz", items: [
+    ["other", "What do you do?", "wɒt də juː duː", "Czym się zajmujesz?", "Pytanie o pracę, a nie o to, co robisz w tej chwili."],
+    ["you", "I work in an office.", "aɪ wɜːk ɪn ən ˈɒfɪs", "Pracuję w biurze."],
+    ["you", "I'm looking for a new job.", "aɪm ˈlʊkɪŋ fər ə njuː dʒɒb", "Szukam nowej pracy."],
+    ["other", "Do you like it?", "də juː laɪk ɪt", "Lubisz to?"],
+    ["you", "Yes, it's interesting.", "jes ɪts ˈɪntrəstɪŋ", "Tak, jest ciekawa."],
+    ["you", "It's OK, but it's quite stressful.", "ɪts əʊˈkeɪ bət ɪts kwaɪt ˈstresfl", "Jest OK, ale dość stresująca."],
+  ]},
+  { en: "Free time", pl: "Czas wolny", items: [
+    ["other", "What do you do in your free time?", "wɒt də juː duː ɪn jɔː friː taɪm", "Co robisz w wolnym czasie?"],
+    ["you", "I like reading and going for walks.", "aɪ laɪk ˈriːdɪŋ ənd ˈɡəʊɪŋ fə wɔːks", "Lubię czytać i chodzić na spacery."],
+    ["you", "I'm really into cooking.", "aɪm ˈrɪəli ˈɪntuː ˈkʊkɪŋ", "Bardzo lubię gotować.", "be into something = bardzo coś lubić, interesować się czymś."],
+    ["you", "I don't have much free time.", "aɪ dəʊnt hæv mʌtʃ friː taɪm", "Nie mam dużo wolnego czasu."],
+    ["other", "Have you got any plans for the weekend?", "həv juː ɡɒt ˈeni plænz fə ðə ˌwiːkˈend", "Masz jakieś plany na weekend?"],
+    ["you", "Not really. Just relaxing at home.", "nɒt ˈrɪəli dʒʌst rɪˈlæksɪŋ ət həʊm", "Nie bardzo. Po prostu odpoczywam w domu."],
+  ]},
+  { en: "Small talk", pl: "Luźna rozmowa", items: [
+    ["other", "Lovely day, isn't it?", "ˈlʌvli deɪ ˈɪznt ɪt", "Piękny dzień, prawda?", "Pogoda to najbezpieczniejszy temat na początek rozmowy z obcą osobą."],
+    ["you", "Yes, it's beautiful!", "jes ɪts ˈbjuːtɪfl", "Tak, piękny!"],
+    ["you", "It's freezing today!", "ɪts ˈfriːzɪŋ təˈdeɪ", "Ale dziś zimno!"],
+    ["you", "I hope it stops raining.", "aɪ həʊp ɪt stɒps ˈreɪnɪŋ", "Mam nadzieję, że przestanie padać."],
+    ["you", "Busy day?", "ˈbɪzi deɪ", "Pracowity dzień?"],
+    ["you", "How was your weekend?", "haʊ wəz jɔː ˌwiːkˈend", "Jak minął weekend?"],
+  ]},
+  { en: "Keeping in touch", pl: "Pozostańmy w kontakcie", items: [
+    ["you", "Let's keep in touch.", "lets kiːp ɪn tʌtʃ", "Bądźmy w kontakcie."],
+    ["you", "Are you on WhatsApp?", "ɑː juː ɒn ˈwɒtsæp", "Masz WhatsAppa?"],
+    ["you", "Can I have your number?", "kən aɪ hæv jɔː ˈnʌmbə", "Mogę prosić o twój numer?"],
+    ["you", "Hope to see you again!", "həʊp tə siː juː əˈɡen", "Mam nadzieję, że się jeszcze zobaczymy!"],
+  ]},
+],
+});
+</script>

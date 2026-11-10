@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Jak powiedzieć, co myślisz, zgodzić się albo grzecznie się nie zgodzić, przyznać, że nie masz zdania, i zapytać innych o opinię. Bardzo przydatne w pracy. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Rozmówca",
+  legend: ["to, co mówisz ty", "to, co możesz usłyszeć od kogoś"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Ćwiczenie: Maciek mówi zdanie, np. „Pizza is better than pasta”, a ty odpowiadasz zwrotem z tej lekcji i dodajesz jedno zdanie dlaczego (because…).",
+    "Nie musisz mieć mocnego zdania. „It depends” i „Yes and no” to też pełne odpowiedzi.",
+  ],
+  stages: [
+  { en: "Giving your opinion", pl: "Mówienie, co myślisz", items: [
+    ["other", "What do you think?", "wɒt də juː θɪŋk", "Co myślisz?"],
+    ["you", "I think it's a great idea.", "aɪ θɪŋk ɪts ə ɡreɪt aɪˈdɪə", "Myślę, że to świetny pomysł."],
+    ["you", "In my opinion, it's too expensive.", "ɪn maɪ əˈpɪnjən ɪts tuː ɪkˈspensɪv", "Moim zdaniem to za drogie."],
+    ["you", "I don't think it's a good idea.", "aɪ dəʊnt θɪŋk ɪts ə ɡʊd aɪˈdɪə", "Nie sądzę, żeby to był dobry pomysł.", "Przeczenie idzie do think: I don't think it's good, a nie I think it isn't good."],
+    ["you", "I feel that we need more time.", "aɪ fiːl ðət wiː niːd mɔː taɪm", "Mam wrażenie, że potrzebujemy więcej czasu."],
+    ["you", "Personally, I prefer tea.", "ˈpɜːsənəli aɪ prɪˈfɜː tiː", "Osobiście wolę herbatę."],
+  ]},
+  { en: "Agreeing", pl: "Zgadzanie się", items: [
+    ["you", "I agree.", "aɪ əˈɡriː", "Zgadzam się.", "Mówi się I agree, a nie I am agree."],
+    ["you", "I totally agree with you.", "aɪ ˈtəʊtəli əˈɡriː wɪð juː", "Całkowicie się z tobą zgadzam."],
+    ["you", "You're right.", "jɔː raɪt", "Masz rację."],
+    ["you", "That's true.", "ðæts truː", "To prawda."],
+    ["you", "Good point.", "ɡʊd pɔɪnt", "Słuszna uwaga."],
+    ["you", "That's what I think too.", "ðæts wɒt aɪ θɪŋk tuː", "Też tak uważam."],
+  ]},
+  { en: "Disagreeing politely", pl: "Grzeczne niezgadzanie się", items: [
+    ["you", "I'm not sure about that.", "aɪm nɒt ʃɔːr əˈbaʊt ðæt", "Nie jestem tego pewna."],
+    ["you", "I see your point, but I don't agree.", "aɪ siː jɔː pɔɪnt bət aɪ dəʊnt əˈɡriː", "Rozumiem, o co ci chodzi, ale się nie zgadzam."],
+    ["you", "I don't really agree.", "aɪ dəʊnt ˈrɪəli əˈɡriː", "Raczej się nie zgadzam.", "really łagodzi niezgodę."],
+    ["you", "Maybe, but it's quite risky.", "ˈmeɪbi bət ɪts kwaɪt ˈrɪski", "Może, ale to dość ryzykowne."],
+    ["you", "I'm afraid I disagree.", "aɪm əˈfreɪd aɪ ˌdɪsəˈɡriː", "Obawiam się, że się nie zgadzam.", "I'm afraid nie znaczy tu „boję się”, tylko grzecznie zapowiada coś niemiłego."],
+    ["you", "That's not always true.", "ðæts nɒt ˈɔːlweɪz truː", "To nie zawsze prawda."],
+  ]},
+  { en: "Somewhere in between", pl: "Częściowa zgoda i wątpliwości", items: [
+    ["you", "Yes and no.", "jes ənd nəʊ", "I tak, i nie."],
+    ["you", "You might be right.", "juː maɪt bi raɪt", "Może masz rację."],
+    ["you", "It depends on the situation.", "ɪt dɪˈpendz ɒn ðə ˌsɪtʃuˈeɪʃn", "To zależy od sytuacji."],
+    ["you", "I haven't decided yet.", "aɪ ˈhævnt dɪˈsaɪdɪd jet", "Jeszcze nie zdecydowałam."],
+    ["you", "I've never thought about it.", "aɪv ˈnevə θɔːt əˈbaʊt ɪt", "Nigdy się nad tym nie zastanawiałam."],
+  ]},
+  { en: "Likes and preferences", pl: "Co lubisz, a czego nie", items: [
+    ["you", "I really like it.", "aɪ ˈrɪəli laɪk ɪt", "Bardzo mi się podoba."],
+    ["you", "I'm not a big fan of horror films.", "aɪm nɒt ə bɪɡ fæn əv ˈhɒrə fɪlmz", "Nie przepadam za horrorami."],
+    ["you", "I can't stand the cold.", "aɪ kɑːnt stænd ðə kəʊld", "Nie znoszę zimna."],
+    ["you", "I'd rather stay at home.", "aɪd ˈrɑːðə steɪ ət həʊm", "Wolałabym zostać w domu."],
+    ["other", "Which one do you prefer?", "wɪtʃ wʌn də juː prɪˈfɜː", "Który wolisz?"],
+    ["you", "I prefer the blue one.", "aɪ prɪˈfɜː ðə bluː wʌn", "Wolę ten niebieski."],
+  ]},
+  { en: "Asking others", pl: "Pytanie innych o zdanie", items: [
+    ["you", "What's your opinion?", "wɒts jɔːr əˈpɪnjən", "Jakie jest twoje zdanie?"],
+    ["you", "Do you agree?", "də juː əˈɡriː", "Zgadzasz się?"],
+    ["you", "How do you feel about it?", "haʊ də juː fiːl əˈbaʊt ɪt", "Co o tym sądzisz?"],
+    ["you", "Don't you think so?", "dəʊnt juː θɪŋk səʊ", "Nie sądzisz?"],
+  ]},
+],
+});
+</script>

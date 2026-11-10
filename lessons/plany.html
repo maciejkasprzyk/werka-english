@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Jak zapytać, czy ktoś ma czas, coś zaproponować, przyjąć lub odmówić zaproszenia, ustalić godzinę i miejsce, a w razie czego przesunąć spotkanie. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Rozmówca",
+  legend: ["to, co mówisz ty", "to, co możesz usłyszeć od kogoś"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Umówcie się z Maćkiem na prawdziwe wyjście, ale całą rozmowę i wiadomości prowadźcie po angielsku.",
+    "Uważaj na godziny: half past six to 6:30, czyli po polsku „wpół do siódmej”.",
+  ],
+  stages: [
+  { en: "Asking about plans", pl: "Pytanie o plany", items: [
+    ["other", "Are you free on Saturday?", "ɑː juː friː ɒn ˈsætədeɪ", "Masz czas w sobotę?"],
+    ["other", "What are you doing this weekend?", "wɒt ə juː ˈduːɪŋ ðɪs ˌwiːkˈend", "Co robisz w ten weekend?"],
+    ["you", "I'm meeting a friend on Friday.", "aɪm ˈmiːtɪŋ ə frend ɒn ˈfraɪdeɪ", "W piątek spotykam się z koleżanką.", "Rzeczy już ustalone w kalendarzu mówi się w czasie Present Continuous: I'm meeting…"],
+    ["you", "I haven't got any plans yet.", "aɪ ˈhævnt ɡɒt ˈeni plænz jet", "Nie mam jeszcze planów."],
+    ["you", "I'm busy on Sunday.", "aɪm ˈbɪzi ɒn ˈsʌndeɪ", "W niedzielę jestem zajęta."],
+  ]},
+  { en: "Suggesting", pl: "Proponowanie", items: [
+    ["you", "Do you want to go for a coffee?", "də juː wɒnt tə ɡəʊ fər ə ˈkɒfi", "Chcesz iść na kawę?"],
+    ["you", "How about going to the cinema?", "haʊ əˈbaʊt ˈɡəʊɪŋ tə ðə ˈsɪnəmə", "Może pójdziemy do kina?", "Po How about czasownik ma końcówkę -ing."],
+    ["you", "Why don't we meet after work?", "waɪ dəʊnt wiː miːt ˈɑːftə wɜːk", "Może spotkamy się po pracy?"],
+    ["you", "Would you like to come to dinner?", "wʊd juː laɪk tə kʌm tə ˈdɪnə", "Masz ochotę przyjść na kolację?"],
+    ["you", "We could go to the park.", "wiː kʊd ɡəʊ tə ðə pɑːk", "Moglibyśmy pójść do parku."],
+  ]},
+  { en: "Saying yes or no", pl: "Przyjmowanie i odmawianie", items: [
+    ["you", "Sounds good!", "saʊndz ɡʊd", "Brzmi dobrze!"],
+    ["you", "Sure, why not?", "ʃɔː waɪ nɒt", "Jasne, czemu nie?"],
+    ["you", "I'd love to!", "aɪd lʌv tuː", "Bardzo chętnie!"],
+    ["you", "Sorry, I can't make it.", "ˈsɒri aɪ kɑːnt meɪk ɪt", "Przepraszam, nie dam rady.", "make it = dać radę przyjść, zdążyć."],
+    ["you", "Maybe another time?", "ˈmeɪbi əˈnʌðə taɪm", "Może innym razem?"],
+    ["you", "I'll let you know.", "aɪl let juː nəʊ", "Dam ci znać."],
+  ]},
+  { en: "Time and place", pl: "Kiedy i gdzie", items: [
+    ["other", "What time shall we meet?", "wɒt taɪm ʃəl wiː miːt", "O której się spotkamy?"],
+    ["you", "Is seven OK for you?", "ɪz ˈsevn əʊˈkeɪ fə juː", "Pasuje ci siódma?"],
+    ["you", "Let's meet at half past six.", "lets miːt ət hɑːf pɑːst sɪks", "Spotkajmy się o wpół do siódmej.", "half past six = 6:30. Łatwo pomylić z polskim „wpół do szóstej”!"],
+    ["other", "Where shall we meet?", "weə ʃəl wiː miːt", "Gdzie się spotkamy?"],
+    ["you", "Let's meet in front of the station.", "lets miːt ɪn frʌnt əv ðə ˈsteɪʃn", "Spotkajmy się przed dworcem."],
+    ["you", "Does that work for you?", "dʌz ðæt wɜːk fə juː", "Pasuje ci to?"],
+    ["you", "See you there!", "siː juː ðeə", "Do zobaczenia na miejscu!"],
+  ]},
+  { en: "Changing plans", pl: "Zmiana planów", items: [
+    ["you", "Sorry, I'm running late.", "ˈsɒri aɪm ˈrʌnɪŋ leɪt", "Przepraszam, spóźnię się."],
+    ["you", "I'll be there in ten minutes.", "aɪl bi ðeər ɪn ten ˈmɪnɪts", "Będę za dziesięć minut."],
+    ["you", "Can we meet a bit later?", "kən wiː miːt ə bɪt ˈleɪtə", "Możemy spotkać się trochę później?"],
+    ["you", "Something came up. Can we change the day?", "ˈsʌmθɪŋ keɪm ʌp kən wiː tʃeɪndʒ ðə deɪ", "Coś mi wypadło. Możemy zmienić dzień?", "Something came up = coś mi wypadło."],
+    ["you", "I have to cancel, sorry.", "aɪ hæv tə ˈkænsl ˈsɒri", "Muszę odwołać, przepraszam."],
+    ["other", "No worries, another time.", "nəʊ ˈwʌriz əˈnʌðə taɪm", "Nie szkodzi, innym razem."],
+  ]},
+],
+});
+</script>

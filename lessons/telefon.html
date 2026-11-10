@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="lessons.js"></script>
+<script src="../assets/lesson.js"></script>
+<script>
+// Phrases: [speaker ("you" or other), English, IPA (one token per English word), Polish, optional note]
+lesson({
+  type: "phrases",
+  intro: "Rozmowa przez telefon jest trudniejsza niż na żywo, bo nie widzisz twarzy. Te zwroty pomogą odebrać, zadzwonić w sprawie, poradzić sobie ze słabym zasięgiem i napisać krótką wiadomość. Polskie tłumaczenie jest zakryte: najpierw spróbuj zrozumieć zdanie, potem stuknij szary prostokąt, żeby sprawdzić.",
+  other: "Rozmówca",
+  legend: ["to, co mówisz ty", "to, co możesz usłyszeć w słuchawce"],
+  tips: [
+    "Najpierw „Zakryj: Polski”. Czytaj na głos, patrząc na wymowę, i sprawdzaj tłumaczenie.",
+    "Potem „Zakryj: Angielski”. Widzisz polskie zdanie i mówisz je po angielsku, zanim odkryjesz.",
+    "Ćwiczcie przez prawdziwy telefon z dwóch pokoi. Bez widzenia twarzy to zupełnie inne ćwiczenie.",
+    "Jeśli czegoś nie słyszysz, użyj zwrotów z lekcji „Kiedy nie rozumiesz” albo „Sorry, the line is bad”.",
+  ],
+  stages: [
+  { en: "Answering the phone", pl: "Odbieranie telefonu", items: [
+    ["you", "Hello, Weronika speaking.", "həˈləʊ ˌverəˈniːkə ˈspiːkɪŋ", "Halo, tu Weronika.", "Tak przedstawiasz się, odbierając telefon, zwłaszcza w pracy."],
+    ["other", "Hi, it's Tom from the office.", "haɪ ɪts tɒm frəm ði ˈɒfɪs", "Cześć, tu Tom z biura."],
+    ["you", "Who's calling, please?", "huːz ˈkɔːlɪŋ pliːz", "Kto mówi?"],
+    ["you", "Hi! Good to hear from you.", "haɪ ɡʊd tə hɪə frəm juː", "Cześć! Miło cię słyszeć."],
+    ["you", "Sorry, I can't talk right now.", "ˈsɒri aɪ kɑːnt tɔːk raɪt naʊ", "Przepraszam, nie mogę teraz rozmawiać."],
+    ["you", "Can I call you back later?", "kən aɪ kɔːl juː bæk ˈleɪtə", "Mogę oddzwonić później?"],
+  ]},
+  { en: "Making a call", pl: "Dzwonienie w sprawie", items: [
+    ["you", "Hi, this is Weronika. I'm calling about the flat.", "haɪ ðɪs ɪz ˌverəˈniːkə aɪm ˈkɔːlɪŋ əˈbaʊt ðə flæt", "Dzień dobry, tu Weronika. Dzwonię w sprawie mieszkania.", "Przez telefon mówisz this is, a nie I am."],
+    ["you", "Could I speak to Mr Smith, please?", "kʊd aɪ spiːk tə ˈmɪstə smɪθ pliːz", "Czy mogę rozmawiać z panem Smithem?"],
+    ["other", "Hold on, please.", "həʊld ɒn pliːz", "Proszę chwilę zaczekać."],
+    ["other", "I'm afraid he's not available.", "aɪm əˈfreɪd hiːz nɒt əˈveɪləbl", "Niestety nie może teraz rozmawiać."],
+    ["you", "Can I leave a message?", "kən aɪ liːv ə ˈmesɪdʒ", "Mogę zostawić wiadomość?"],
+    ["you", "Could you ask him to call me back?", "kʊd juː ɑːsk hɪm tə kɔːl miː bæk", "Może pan poprosić, żeby oddzwonił?"],
+    ["you", "I'd like to make an appointment.", "aɪd laɪk tə meɪk ən əˈpɔɪntmənt", "Chciałabym umówić się na wizytę."],
+  ]},
+  { en: "Bad connection", pl: "Problemy z połączeniem", items: [
+    ["you", "Sorry, the line is bad.", "ˈsɒri ðə laɪn ɪz bæd", "Przepraszam, słabo cię słychać."],
+    ["you", "You're breaking up.", "jɔː ˈbreɪkɪŋ ʌp", "Przerywa ci."],
+    ["you", "Can you hear me?", "kən juː hɪə miː", "Słyszysz mnie?"],
+    ["you", "I'll call you back.", "aɪl kɔːl juː bæk", "Oddzwonię."],
+    ["you", "My battery is about to die.", "maɪ ˈbætri ɪz əˈbaʊt tə daɪ", "Zaraz padnie mi bateria."],
+    ["you", "Sorry, I missed your call.", "ˈsɒri aɪ mɪst jɔː kɔːl", "Przepraszam, przegapiłam twój telefon."],
+  ]},
+  { en: "Text messages", pl: "Wiadomości", items: [
+    ["you", "Thanks for your message.", "θæŋks fə jɔː ˈmesɪdʒ", "Dzięki za wiadomość."],
+    ["you", "Sorry for the late reply.", "ˈsɒri fə ðə leɪt rɪˈplaɪ", "Przepraszam za późną odpowiedź."],
+    ["you", "Just checking you got my message.", "dʒʌst ˈtʃekɪŋ juː ɡɒt maɪ ˈmesɪdʒ", "Sprawdzam tylko, czy dostałeś moją wiadomość."],
+    ["you", "Call me when you're free.", "kɔːl miː wen jɔː friː", "Zadzwoń, jak będziesz mieć czas."],
+    ["you", "On my way!", "ɒn maɪ weɪ", "Już jadę!"],
+    ["you", "Let me know if you need anything.", "let miː nəʊ ɪf juː niːd ˈeniθɪŋ", "Daj znać, jeśli czegoś potrzebujesz."],
+    ["you", "No rush.", "nəʊ rʌʃ", "Bez pośpiechu."],
+  ]},
+  { en: "Ending a call", pl: "Kończenie rozmowy", items: [
+    ["you", "Thanks for calling.", "θæŋks fə ˈkɔːlɪŋ", "Dzięki za telefon."],
+    ["you", "Talk to you soon.", "tɔːk tə juː suːn", "Do usłyszenia."],
+    ["you", "OK, I have to go now. Bye!", "əʊˈkeɪ aɪ hæv tə ɡəʊ naʊ baɪ", "Dobra, muszę kończyć. Pa!"],
+  ]},
+],
+});
+</script>
